@@ -438,20 +438,22 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "updateUserEmail.ftlh",
+					"asssignedVariableName": "userInput",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "RRF",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Display update user page",
+					"arguments": "userWithUid"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-ff55da90-e37e-4952-9402-9a1187f12240",
@@ -490,7 +492,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "whenNode-8d9ae6b5-2a60-47cd-b5ea-7627846deb7b",
@@ -1300,8 +1302,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1896,
-		"y": 2,
+		"x": -1518,
+		"y": -17,
 		"zoom": 1
 	}
 }
