@@ -7,7 +7,7 @@ import io.jans.orm.exception.operation.EntryNotFoundException;
 import io.jans.service.cdi.util.CdiUtil;
 import io.jans.util.StringHelper;
 
-import org.gluu.agama.user.UserRegistration;
+import org.gluu.agama.user.UsernameUpdate;
 import io.jans.agama.engine.script.LogUtils;
 import java.io.IOException;
 import io.jans.as.common.service.common.ConfigurationService;
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 
 
-public class JansUsernameUpdate extends UserRegistration {
+public class JansUsernameUpdate extends UsernameUpdate {
     
     private static final String MAIL = "mail";
     private static final String UID = "uid";
@@ -33,14 +33,14 @@ public class JansUsernameUpdate extends UserRegistration {
     private static final String EXT_UID_PREFIX = "github:";
     private static final SecureRandom RAND = new SecureRandom();
 
-    private static JansUserRegistration INSTANCE = null;
+    private static JansUsernameUpdate INSTANCE = null;
 
-    public JansUserRegistration() {}
+    public JansUsernameUpdate() {}
 
-    public static synchronized JansUserRegistration getInstance()
+    public static synchronized JansUsernameUpdate getInstance()
     {
         if (INSTANCE == null)
-            INSTANCE = new JansUserRegistration();
+            INSTANCE = new JansUsernameUpdate();
 
         return INSTANCE;
     }
