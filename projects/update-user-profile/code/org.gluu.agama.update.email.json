@@ -453,7 +453,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-ff55da90-e37e-4952-9402-9a1187f12240",
@@ -513,20 +513,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "userInput.empty",
+							"operator": "is",
+							"dataValue": "true",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "when fields values are not entered"
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 60
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-b6a25d34-d1c2-476d-ba6c-f7392d095417",
@@ -558,7 +566,8 @@
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "callNode-f44e6fde-ab3b-4283-bd98-b43c53573600",
@@ -1302,8 +1311,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1518,
-		"y": -17,
+		"x": -2161,
+		"y": 85,
 		"zoom": 1
 	}
 }
