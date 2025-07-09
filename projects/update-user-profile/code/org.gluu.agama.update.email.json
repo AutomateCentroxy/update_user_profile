@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {
+      "id": "startNode-fc6117fc-f6a5-4bdd-a5d8-f7847b06213b",
+      "type": "startNode",
+      "sourcePosition": "right",
+      "position": {
+        "x": 30,
+        "y": 30
+      },
+      "deletable": false,
+      "data": {
+        "id": "startNode-fc6117fc-f6a5-4bdd-a5d8-f7847b06213b",
+        "type": "startNode",
+        "position": {
+          "x": 30,
+          "y": 40
+        },
+        "agamaData": {
+          "isTopLevelFlow": true,
+          "basepath": "",
+          "configParams": "{}",
+          "nodeIcon": "material-symbols:line-start-square",
+          "timeout": "",
+          "inputs": "",
+          "configs": "",
+          "flowname": "org.gluu.agama.update.email",
+          "displayName": "Update User Email",
+          "creationDate": "09/07/2025",
+          "hasComment": true,
+          "comment": ""
+        }
+      }
+    }
+  ]
+}
