@@ -126,21 +126,22 @@
 				"previousNodeId": "repeatNode-9dc776ef-e93d-4379-bd57-b5ce49dd2308",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Maximum attempt reached\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Maximum attempt reached"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "finishNode-8a4de1b7-6836-4cab-b5de-3dece6475c00",
@@ -161,18 +162,20 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "END BLOCK",
 					"hasComment": true,
-					"comment": "",
+					"comment": " User Registration flow failed",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "User update flow reached max attempts try later",
+					"finishMode": "withFailure",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "rrfNode-35a3c933-e8f4-4de3-80ad-129fd8a15453",
