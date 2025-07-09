@@ -998,7 +998,50 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
+		},
+		{
+			"id": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+			"type": "whenNode",
+			"position": {
+				"x": 3292,
+				"y": -81
+			},
+			"data": {
+				"id": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+				"type": "whenNode",
+				"position": {
+					"x": 3305,
+					"y": 4
+				},
+				"previousNodeId": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+				"agamaData": {
+					"variableField": "",
+					"valueField": "",
+					"conditionInputField": "",
+					"conditions": [
+						{
+							"variable": "emailVerificationResult.success",
+							"operator": "is",
+							"dataValue": "true",
+							"combinator": "none"
+						}
+					],
+					"nodeIcon": "ph:swap",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "If email data is valid"
+				}
+			},
+			"measured": {
+				"width": 109,
+				"height": 58
+			},
+			"selected": true,
+			"dragging": false
 		}
 	],
 	"edges": [
@@ -1457,11 +1500,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_assignmentNode-3b400892-5894-4ccf-8aee-88776e92ca78"
+		},
+		{
+			"id": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5-whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+			"type": "default",
+			"source": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+			"target": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5"
 		}
 	],
 	"viewport": {
-		"x": -2651.693781534807,
-		"y": 193.8687863930288,
+		"x": -3161.693781534807,
+		"y": 382.8687863930288,
 		"zoom": 1
 	}
 }
