@@ -619,7 +619,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-1163888a-9feb-4d0c-9139-8d0fdbed05d1",
@@ -638,24 +638,28 @@
 				"previousNodeId": "callNode-f44e6fde-ab3b-4283-bd98-b43c53573600",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "updateUser",
+					"javaVariableName": "usernameUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"userInput"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "CALL",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Call user registration service method to update a user",
+					"asssignedVariableName": "inum"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-3d7819a4-ff84-4e2c-a16c-eda9bc184ef5",
@@ -1326,8 +1330,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2161,
-		"y": 85,
+		"x": -2568,
+		"y": 339,
 		"zoom": 1
 	}
 }
