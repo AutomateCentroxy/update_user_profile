@@ -618,7 +618,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -961,6 +961,44 @@
 				"height": 122
 			},
 			"selected": false
+		},
+		{
+			"id": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+			"type": "triggerNode",
+			"position": {
+				"x": 3055,
+				"y": 4
+			},
+			"data": {
+				"id": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+				"type": "triggerNode",
+				"position": {
+					"x": 3055,
+					"y": 4
+				},
+				"previousNodeId": "assignmentNode-3b400892-5894-4ccf-8aee-88776e92ca78",
+				"agamaData": {
+					"nodeIcon": "fluent-mdl2:trigger-approval",
+					"flowFileName": "org.gluu.agama.update.emailVerification",
+					"arguments": [
+						"newEmail"
+					],
+					"asssignedVariableName": "emailVerificationResult",
+					"exceptionVariableField": "",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "Trigger sub-routine to verify email",
+					"overrides": []
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true
 		}
 	],
 	"edges": [
@@ -1400,11 +1438,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_whenNode-8d9ae6b5-2a60-47cd-b5ea-7627846deb7b_otherwise"
+		},
+		{
+			"id": "assignmentNode-3b400892-5894-4ccf-8aee-88776e92ca78-triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+			"type": "default",
+			"source": "assignmentNode-3b400892-5894-4ccf-8aee-88776e92ca78",
+			"target": "triggerNode-461287c6-a2a2-49e6-bf1a-50cb5a5034e5",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_assignmentNode-3b400892-5894-4ccf-8aee-88776e92ca78"
 		}
 	],
 	"viewport": {
-		"x": -2367.7839458193857,
-		"y": 239.27392211269012,
-		"zoom": 0.7412335049014176
+		"x": -2651.693781534807,
+		"y": 193.8687863930288,
+		"zoom": 1
 	}
 }
