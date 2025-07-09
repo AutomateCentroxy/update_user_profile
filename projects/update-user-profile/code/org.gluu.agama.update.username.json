@@ -574,7 +574,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-638fcd26-6d11-4796-81a2-ac4b1849adab",
@@ -592,6 +592,42 @@
 				},
 				"previousNodeId": "whenNode-dc8141ac-0358-490d-a960-429549d1cb3a",
 				"branching": "otherwise",
+				"agamaData": {
+					"javaClassName": "",
+					"javaMethodName": "",
+					"javaVariableName": "",
+					"exceptionVariableField": "",
+					"callType": "Call static method",
+					"arguments": [],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 123
+			}
+		},
+		{
+			"id": "callNode-986994f7-adc1-415c-bc5b-ef57e362ed0f",
+			"type": "callNode",
+			"position": {
+				"x": 3024,
+				"y": 83
+			},
+			"data": {
+				"id": "callNode-986994f7-adc1-415c-bc5b-ef57e362ed0f",
+				"type": "callNode",
+				"position": {
+					"x": 3024,
+					"y": 83
+				},
+				"previousNodeId": "callNode-638fcd26-6d11-4796-81a2-ac4b1849adab",
 				"agamaData": {
 					"javaClassName": "",
 					"javaMethodName": "",
@@ -899,11 +935,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_whenNode-dc8141ac-0358-490d-a960-429549d1cb3a_otherwise"
+		},
+		{
+			"id": "callNode-638fcd26-6d11-4796-81a2-ac4b1849adab-callNode-986994f7-adc1-415c-bc5b-ef57e362ed0f",
+			"type": "default",
+			"source": "callNode-638fcd26-6d11-4796-81a2-ac4b1849adab",
+			"target": "callNode-986994f7-adc1-415c-bc5b-ef57e362ed0f",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-638fcd26-6d11-4796-81a2-ac4b1849adab"
 		}
 	],
 	"viewport": {
-		"x": -1492.605828517424,
-		"y": -21.489580048225434,
-		"zoom": 0.860949188338904
+		"x": -2285,
+		"y": 64,
+		"zoom": 1
 	}
 }
