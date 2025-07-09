@@ -71,15 +71,23 @@ public class JansEmailService extends EmailService {
 
     }
 
-    public String sendEmail(String to, ContextData context) {
+    public String sendEmail(String to) {
 
         SmtpConfiguration smtpConfiguration = getSmtpConfiguration();
-        IntStream digits = RAND.ints(OTP_LENGTH, 0, 10);
-        String otp = digits.mapToObj(i -> "" + i).collect(Collectors.joining());
+
+        StringBuilder otpBuilder = new StringBuilder();
+        for (int i = 0; i < OTP_LENGTH; i++) {
+            otpBuilder.append(RAND.nextInt(10)); // Generates 0–9
+        }
+        String otp = otpBuilder.toString();
 
         String from = smtpConfiguration.getFromEmailAddress();
         String subject = String.format(SUBJECT_TEMPLATE, otp);
         String textBody = String.format(MSG_TEMPLATE_TEXT, otp);
+        ContextData context = new ContextData();
+        context.setDevice("Unknown");
+        context.setTimeZone("Unknown");
+        context.setLocation("Unknown");
         String htmlBody = EmailTemplate.get(otp, context);
 
         MailService mailService = CdiUtil.bean(MailService.class);
