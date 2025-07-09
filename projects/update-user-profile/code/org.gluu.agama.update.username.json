@@ -698,7 +698,7 @@
 				"width": 110,
 				"height": 60
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-d78552db-fd09-4ddb-8210-168fbe8ec170",
@@ -717,21 +717,22 @@
 				"previousNodeId": "whenNode-9665dec9-f728-414f-b09f-f64328a6dbf1",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"User update failed. Error : %\" E",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " User update failed log"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-633edaa7-67fc-49c4-bb79-9ce99670eef2",
@@ -749,12 +750,18 @@
 				},
 				"previousNodeId": "logNode-d78552db-fd09-4ddb-8210-168fbe8ec170",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"User update failed\"",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "ASSIGNMENT",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -762,7 +769,8 @@
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-08970cfe-fa05-42f4-8752-85ec81bb464c",
@@ -793,8 +801,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 123
+				"width": 168,
+				"height": 120
 			}
 		},
 		{
