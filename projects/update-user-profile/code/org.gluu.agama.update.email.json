@@ -618,7 +618,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1181,8 +1181,8 @@
 					"assignments": [
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "newEmail",
-							"assignedVariableName": "userInput.mail"
+							"assignmentExpression": "userInput.mail",
+							"assignedVariableName": "email"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -1198,7 +1198,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		}
 	],
