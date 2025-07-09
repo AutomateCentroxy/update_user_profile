@@ -807,7 +807,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "rrfNode-4c58236e-21f0-45ed-a46f-0a954db5b821",
@@ -827,20 +827,21 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "acknowledgementEmail.ftlh",
+					"asssignedVariableName": "acknowledgementInput",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Show acknowledgement UI page for successful Update "
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-ca89692d-540a-4a5d-9d56-81540b2dd7bd",
@@ -1347,8 +1348,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3096,
-		"y": 149,
+		"x": -2907,
+		"y": 112,
 		"zoom": 1
 	}
 }
