@@ -7,7 +7,7 @@ emailObj = {}
 sendMail = true
 uiInput = {matches: true, resent: false}
 // Get instance email service
-emailService = Call org.gluu.agama.user.UserRegistration#getInstance 
+emailService = Call org.gluu.agama.smtp.EmailService#getInstance 
 // Iterate x times max
 max = Repeat 3 times max
      // When send mail is allowed
