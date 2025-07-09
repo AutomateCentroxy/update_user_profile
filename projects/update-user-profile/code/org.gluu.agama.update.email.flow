@@ -24,6 +24,9 @@ Repeat 6 times max
                userInput = RRF "updateUserEmail.ftlh" userWithUid
                // when fields values are not entered
                When userInput.empty is true
+                    // show error
+                    uiFeedback.errorMessage = "User input fields are empty"
+                    inum = userInput.inum
                Otherwise
                     Call __________#__________ 
                     Call __________#__________ 
@@ -37,5 +40,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_mzmwu = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_mzmwu
+it_zzmxn = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_zzmxn
