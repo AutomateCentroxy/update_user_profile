@@ -773,7 +773,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-e64fb7c4-3312-4443-91fd-0800c4a675c4",
@@ -792,21 +792,22 @@
 				"previousNodeId": "whenNode-3d7819a4-ff84-4e2c-a16c-eda9bc184ef5",
 				"branching": "success",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"User % has been updated\" inum",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Show user updation log"
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
-			}
+				"width": 170,
+				"height": 123
+			},
+			"selected": true
 		},
 		{
 			"id": "rrfNode-4c58236e-21f0-45ed-a46f-0a954db5b821",
@@ -1346,8 +1347,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2885,
-		"y": 351,
+		"x": -3096,
+		"y": 149,
 		"zoom": 1
 	}
 }
