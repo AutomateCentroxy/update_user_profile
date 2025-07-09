@@ -939,7 +939,7 @@
 						{
 							"variableTypeCheck": true,
 							"assignmentExpression": "userInput.mail",
-							"assignedVariableName": "newEmail"
+							"assignedVariableName": "email"
 						},
 						{
 							"variableTypeCheck": true,
@@ -981,7 +981,7 @@
 					"nodeIcon": "fluent-mdl2:trigger-approval",
 					"flowFileName": "org.gluu.agama.update.emailVerification",
 					"arguments": [
-						"newEmail"
+						"email"
 					],
 					"asssignedVariableName": "emailVerificationResult",
 					"exceptionVariableField": "",
