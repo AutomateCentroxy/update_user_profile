@@ -28,7 +28,7 @@
 	  </div>
 	  [/#if]
 	  <div class="content">
-		<p class="text-center">Search user by username
+		<p class="text-center">Search user by Username
 		</p>
 		<form method="post" enctype="application/x-www-form-urlencoded" id="updateUserForm">
 		  <input type="hidden" id="formType" name="formType" value="updateUserForm">
