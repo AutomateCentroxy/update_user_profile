@@ -594,24 +594,28 @@
 				"branching": "otherwise",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "getUserEntityByInum",
+					"javaVariableName": "usernameUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"inum"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "CALL",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Check user already exist or not with username",
+					"asssignedVariableName": "userWithUid"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-986994f7-adc1-415c-bc5b-ef57e362ed0f",
@@ -647,7 +651,8 @@
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": false
 		}
 	],
 	"edges": [
