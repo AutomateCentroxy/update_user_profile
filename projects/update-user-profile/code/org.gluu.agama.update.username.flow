@@ -38,7 +38,7 @@ Repeat 6 times max
                          //  Show user updation log
                          Log "@info User % has been updated" inum
                          //  Show acknowledgement UI page for successful Update 
-                         acknowledgementInput = RRF "acknowledgement.ftlh" 
+                         acknowledgementInput = RRF "acknowledgementUsername.ftlh" 
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
@@ -50,5 +50,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_nyzqr = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_nyzqr
+it_rlddw = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_rlddw
