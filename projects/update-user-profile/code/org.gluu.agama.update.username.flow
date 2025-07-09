@@ -28,10 +28,11 @@ Repeat 6 times max
                     uiFeedback.errorMessage = "User input fields are empty"
                     inum = userInput.inum
                Otherwise
-                    Call __________#__________ 
+                    //  Check user already exist or not with username
+                    userWithUid = Call usernameUpdateService getUserEntityByInum inum
                     Call __________#__________ 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_wkfnu = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_wkfnu
+it_axaxx = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_axaxx
