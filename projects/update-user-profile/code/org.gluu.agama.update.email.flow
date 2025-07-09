@@ -10,5 +10,15 @@ Repeat __________ times max
           Otherwise
                RRF "__________" 
                When 
+               Otherwise
+                    Call __________#__________ 
+                    Call __________#__________ 
+                    When 
+                         Log "@ " __________
+                         RRF "__________" 
+                         Log "@ " __________
+                         Finish __________
+                    Otherwise
+                         Log "@ " __________
 Log "@ " __________
 Finish __________
