@@ -1,12 +1,16 @@
+[#ftl output_format="HTML"]
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Welcome
-	</title>
-  </head>
-  <body>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Welcome
+	</title></head>
+<body>
+
+  
+	
+	
+	
+  
+  
 	<div align="center" class="registration-container shadow">
 	  <div class="flex">
 		<img src="https://gluu.org/wp-content/uploads/2020/12/logo.png" id="inh1m">
@@ -14,7 +18,7 @@
 	  <div class="separator">
 	  </div>
 	  <p class="message">
-		You've successfully Updated your UserName !!!
+		You've successfully Updated your Username !!!
 		<br>
 	  </p>
 	  <form method="post" id="myForm" class="my-8">
@@ -24,8 +28,11 @@
 		</div>
 	  </form>
 	</div>
-  </body>
-  <style>
+  
+  
+  
+</body>
+<style>
 	body {
 	  font-family: Arial, sans-serif;
 	  text-align: center;
@@ -92,7 +99,7 @@
 	  background-color: #009624;
 	}
   </style>
-  <script>
+<script>
 	window.onload = function () {
 	  var form = document.querySelector("form");
 	};
