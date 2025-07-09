@@ -79,7 +79,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "repeatNode-9dc776ef-e93d-4379-bd57-b5ce49dd2308",
@@ -439,7 +439,7 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "updateProfile.ftlh",
+					"templatePath": "updateUserUsername.ftlh",
 					"asssignedVariableName": "userInput",
 					"nodeColor": "",
 					"titleColor": "",
@@ -447,14 +447,16 @@
 					"displayName": "RRF",
 					"hasComment": true,
 					"comment": "Display update user page",
-					"arguments": "userWithUid"
+					"arguments": [
+						"userWithUid"
+					]
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-5c889cd7-7c29-4082-94c6-edad9d6d5071",
@@ -1353,8 +1355,8 @@
 		}
 	],
 	"viewport": {
-		"x": 161.3127839066343,
-		"y": 18.272704885030635,
-		"zoom": 0.860949188338904
+		"x": -1541,
+		"y": -153,
+		"zoom": 1
 	}
 }
