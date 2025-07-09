@@ -78,7 +78,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "repeatNode-a357a9e3-6b32-48ba-83ce-bdc38c063366",
@@ -97,12 +97,12 @@
 				"previousNodeId": "assignmentNode-8a7068cc-4e34-46f7-b0cc-e7b27a00f608",
 				"agamaData": {
 					"nodeIcon": "material-symbols:event-repeat-outline-rounded",
-					"maxIteration": "",
+					"maxIteration": "6",
 					"maxIterationVariableName": "",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "REPEAT",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -110,7 +110,8 @@
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "logNode-7d53b7bd-122d-49ec-820b-88458985c499",
@@ -129,21 +130,22 @@
 				"previousNodeId": "repeatNode-a357a9e3-6b32-48ba-83ce-bdc38c063366",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Maximum attempt reached\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Maximum attempt reached"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "finishNode-d772f171-2250-4ef5-baf4-a656fcb901a4",
@@ -1259,8 +1261,8 @@
 		}
 	],
 	"viewport": {
-		"x": 85.99336194072276,
-		"y": 226.44115707352228,
+		"x": -31.006638059277293,
+		"y": 181.44115707352233,
 		"zoom": 1.0570180405613803
 	}
 }
