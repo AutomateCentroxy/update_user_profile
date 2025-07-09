@@ -28,26 +28,38 @@ Repeat 6 times max
                     uiFeedback.errorMessage = "User input fields are empty"
                     inum = userInput.inum
                Otherwise
-                    //  Check user already exist or not with username
-                    userWithUid = Call usernameUpdateService getUserEntityByInum inum
-                    //  Call user registration service method to update a user
-                    inum = Call usernameUpdateService updateUser userInput
-                    //  If user update success
-                    When inum is not null
-                         //  Show user updation log
-                         Log "@info User % has been updated" inum
-                         //  Show acknowledgement UI page for successful Update 
-                         acknowledgementInput = RRF "acknowledgementEmail.ftlh" 
-                         //  Finish the flow successfully
-                         Log "@info Finish the flow successfully"
-                         //  Finish the flow successfully
-                         Finish userName
+                    email = userInput.mail
+                    inum = userWithUid.inum
+                    // Trigger sub-routine to verify email
+                    emailVerificationResult = Trigger org.gluu.agama.update.emailVerification email
+                    // If email data is valid
+                    When emailVerificationResult.success is true
+                         // E-mail verification passed, initiating user provisioning flow
+                         Log "@info E-mail verification passed, initiating user email update flow"
+                         email = userInput.mail
+                         //  Check user already exist or not with username
+                         userWithUid = Call usernameUpdateService getUserEntityByInum inum
+                         //  Call user registration service method to update a user
+                         inum = Call usernameUpdateService updateUser userInput
+                         //  If user update success
+                         When inum is not null
+                              //  Show user updation log
+                              Log "@info User % has been updated" inum
+                              //  Show acknowledgement UI page for successful Update 
+                              acknowledgementInput = RRF "acknowledgementEmail.ftlh" 
+                              //  Finish the flow successfully
+                              Log "@info Finish the flow successfully"
+                              //  Finish the flow successfully
+                              Finish userName
+                         Otherwise
+                              //  User update failed log
+                              Log "@info User update failed. Error : %" E
+                              uiFeedback.errorMessage = "User update failed"
                     Otherwise
-                         //  User update failed log
-                         Log "@info User update failed. Error : %" E
-                         uiFeedback.errorMessage = "User update failed"
+                         When emailVerificationResult.success is false
+                              emailObj.errorMessage = "Error sending email. Check email address and SMTP configuration."
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_wkrrv = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_wkrrv
+it_mlhcl = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_mlhcl
