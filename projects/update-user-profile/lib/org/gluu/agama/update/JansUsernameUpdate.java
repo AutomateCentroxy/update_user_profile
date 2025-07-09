@@ -157,7 +157,11 @@ public class JansUsernameUpdate extends UsernameUpdate {
                 user.setAttribute(attr, val);      
             }
         });
-        user.setUserId(profile.get(UID));
+        String uid = profile.get(UID);
+        if (StringHelper.isNotEmpty(uid)) {
+            user.setUserId(uid);
+        }
+
         UserService userService = CdiUtil.bean(UserService.class);
         user = userService.updateUser(user); // Set user status active
     
