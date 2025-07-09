@@ -253,7 +253,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "whenNode-6f4abbbb-5942-49b5-94c4-f1bf14fda271",
@@ -274,21 +274,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "searchUserInput.formType",
+							"operator": "is",
+							"dataValue": "\"searchUserForm\"",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "when searchUserForm is submitted"
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 60
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1267,8 +1274,8 @@
 		}
 	],
 	"viewport": {
-		"x": 0,
-		"y": 0,
+		"x": -634,
+		"y": -56,
 		"zoom": 1
 	}
 }
