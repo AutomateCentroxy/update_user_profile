@@ -145,7 +145,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "finishNode-d772f171-2250-4ef5-baf4-a656fcb901a4",
@@ -166,18 +166,20 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "END BLOCK",
 					"hasComment": true,
-					"comment": "",
+					"comment": " User Registration flow failed",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "User update flow reached max attempts try later",
+					"finishMode": "withFailure",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "rrfNode-6608a07f-27b5-4ed6-8ea4-5b2c1ed3114a",
