@@ -1,6 +1,9 @@
 Flow org.gluu.agama.update.email
      Basepath ""
      Timeout 360 seconds
+//  Create  variable for UI feedback
+uiFeedback = {}
+uiFeedback.errorMessage = ""
 Repeat __________ times max
      RRF "__________" 
      Call __________#__________ 
