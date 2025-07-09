@@ -1,2 +1,9 @@
 Flow org.gluu.agama.update.email
      Basepath ""
+     Timeout 360 seconds
+Repeat __________ times max
+     RRF "__________" 
+     Call __________#__________ 
+     When 
+Log "@ " __________
+Finish __________
