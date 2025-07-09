@@ -17,8 +17,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.regex.Pattern;
 
-public class JansUsernameUpdate extends UsernameUpdate {
 
+
+public class JansUsernameUpdate extends UsernameUpdate {
+    
     private static final String MAIL = "mail";
     private static final String UID = "uid";
     private static final String DISPLAY_NAME = "displayName";
@@ -33,10 +35,10 @@ public class JansUsernameUpdate extends UsernameUpdate {
 
     private static JansUsernameUpdate INSTANCE = null;
 
-    public JansUsernameUpdate() {
-    }
+    public JansUsernameUpdate() {}
 
-    public static synchronized JansUsernameUpdate getInstance() {
+    public static synchronized JansUsernameUpdate getInstance()
+    {
         if (INSTANCE == null)
             INSTANCE = new JansUsernameUpdate();
 
@@ -60,37 +62,38 @@ public class JansUsernameUpdate extends UsernameUpdate {
         User user = getUser(MAIL, email);
         boolean local = user != null;
         LogUtils.log("There is % local account for %", local ? "a" : "no", email);
-
-        if (local) {
+    
+        if (local) {            
             String uid = getSingleValuedAttr(user, UID);
             String inum = getSingleValuedAttr(user, INUM_ATTR);
             String name = getSingleValuedAttr(user, GIVEN_NAME);
-
+    
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
                 if (name == null && email != null && email.contains("@")) {
                     name = email.substring(0, email.indexOf("@"));
                 }
             }
-
+    
             // Creating a truly modifiable map
             Map<String, String> userMap = new HashMap<>();
             userMap.put(UID, uid);
             userMap.put(INUM_ATTR, inum);
             userMap.put("name", name);
             userMap.put("email", email);
-
+    
             return userMap;
         }
-
+    
         return new HashMap<>();
     }
+    
 
     public Map<String, String> getUserEntityByUsername(String username) {
         User user = getUser(UID, username);
         boolean local = user != null;
         LogUtils.log("There is % local account for %", local ? "a" : "no", username);
-
+    
         if (local) {
             String email = getSingleValuedAttr(user, MAIL);
             String inum = getSingleValuedAttr(user, INUM_ATTR);
@@ -99,13 +102,13 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
-
+    
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
                 if (name == null && email != null && email.contains("@")) {
                     name = email.substring(0, email.indexOf("@"));
                 }
-            }
+            }    
             // Creating a modifiable HashMap directly
             Map<String, String> userMap = new HashMap<>();
             userMap.put(UID, uid);
@@ -114,61 +117,54 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("email", email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
-
+    
             return userMap;
         }
-
+    
         return new HashMap<>();
     }
+    
 
     public String addNewUser(Map<String, String> profile) throws Exception {
-        Set<String> attributes = Set.of("uid", "mail", "displayName", "givenName", "sn", "userPassword");
+        Set<String> attributes = Set.of("uid", "mail", "displayName","givenName", "sn", "userPassword");
         User user = new User();
-
+    
         attributes.forEach(attr -> {
             String val = profile.get(attr);
             if (StringHelper.isNotEmpty(val)) {
-                user.setAttribute(attr, val);
+                user.setAttribute(attr, val);      
             }
         });
 
         UserService userService = CdiUtil.bean(UserService.class);
         user = userService.addUser(user, true); // Set user status active
-
+    
         if (user == null) {
             throw new EntryNotFoundException("Added user not found");
         }
-
+    
         return getSingleValuedAttr(user, INUM_ATTR);
-    }
+    } 
 
     public String updateUser(Map<String, String> profile) throws Exception {
-        User user = getUser(INUM_ATTR, profile.get(INUM_ATTR));
-        if (user == null) {
-            throw new EntryNotFoundException("User not found with inum: " + profile.get(INUM_ATTR));
-        }
-
-        // Only update email if provided
-        String mail = profile.get(MAIL);
-        if (StringHelper.isNotEmpty(mail)) {
-            user.setAttribute(MAIL, mail);
-        }
-
-        // Only update uid (username) if provided
-        String uid = profile.get(UID);
-        if (StringHelper.isNotEmpty(uid)) {
-            user.setUserId(uid);
-        }
-
-        LogUtils.log("Updating user. New UID: %, New Mail: %", uid, mail);
-
+        Set<String> attributes = Set.of("uid", "mail");
+        User user = getUser(INUM_ATTR,  profile.get(INUM_ATTR));
+    
+        attributes.forEach(attr -> {
+            String val = profile.get(attr);
+            LogUtils.log("******** attr: % , val: %", attr, val);
+            if (StringHelper.isNotEmpty(val)) {
+                user.setAttribute(attr, val);      
+            }
+        });
+        user.setUserId(profile.get(UID));
         UserService userService = CdiUtil.bean(UserService.class);
         user = userService.updateUser(user); // Set user status active
-
+    
         if (user == null) {
             throw new EntryNotFoundException("Added user not found");
         }
-
+    
         return getSingleValuedAttr(user, INUM_ATTR);
     }
 
@@ -179,7 +175,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
 
         if (local) {
             String email = getSingleValuedAttr(user, MAIL);
-            // String inum = getSingleValuedAttr(user, INUM_ATTR);
+            //String inum = getSingleValuedAttr(user, INUM_ATTR);
             String name = getSingleValuedAttr(user, GIVEN_NAME);
             String uid = getSingleValuedAttr(user, UID); // Define uid properly
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -212,7 +208,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private String getSingleValuedAttr(User user, String attribute) {
         Object value = null;
         if (attribute.equals(UID)) {
-            // user.getAttribute("uid", true, false) always returns null :(
+            //user.getAttribute("uid", true, false) always returns null :(
             value = user.getUserId();
         } else {
             value = user.getAttribute(attribute, true, false);
@@ -226,3 +222,4 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 }
+
