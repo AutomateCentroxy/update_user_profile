@@ -249,7 +249,111 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
+		},
+		{
+			"id": "whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+			"type": "whenNode",
+			"position": {
+				"x": 1274,
+				"y": 383
+			},
+			"data": {
+				"id": "whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+				"type": "whenNode",
+				"position": {
+					"x": 1267,
+					"y": 360
+				},
+				"previousNodeId": "callNode-ada623f6-c72b-4874-a2a0-2e098bb68f30",
+				"agamaData": {
+					"variableField": "",
+					"valueField": "",
+					"conditionInputField": "",
+					"conditions": [],
+					"nodeIcon": "ph:swap",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 110,
+				"height": 60
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+			"type": "assignmentNode",
+			"position": {
+				"x": 1524,
+				"y": 583
+			},
+			"data": {
+				"id": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+				"type": "assignmentNode",
+				"position": {
+					"x": 1524,
+					"y": 583
+				},
+				"previousNodeId": "whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+				"branching": "success",
+				"agamaData": {
+					"assignments": [],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 123
+			}
+		},
+		{
+			"id": "callNode-c6b83a3b-2427-450b-b529-567f0c7179de",
+			"type": "callNode",
+			"position": {
+				"x": 1774,
+				"y": 583
+			},
+			"data": {
+				"id": "callNode-c6b83a3b-2427-450b-b529-567f0c7179de",
+				"type": "callNode",
+				"position": {
+					"x": 1774,
+					"y": 583
+				},
+				"previousNodeId": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+				"agamaData": {
+					"javaClassName": "",
+					"javaMethodName": "",
+					"javaVariableName": "",
+					"exceptionVariableField": "",
+					"callType": "Call static method",
+					"arguments": [],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 123
+			}
 		}
 	],
 	"edges": [
@@ -366,11 +470,68 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_rrfNode-35a3c933-e8f4-4de3-80ad-129fd8a15453"
+		},
+		{
+			"id": "callNode-ada623f6-c72b-4874-a2a0-2e098bb68f30-whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+			"type": "default",
+			"source": "callNode-ada623f6-c72b-4874-a2a0-2e098bb68f30",
+			"target": "whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-ada623f6-c72b-4874-a2a0-2e098bb68f30"
+		},
+		{
+			"id": "whenNode-d694df01-717b-4251-9a80-243bc682f20f-assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+			"type": "default",
+			"source": "whenNode-d694df01-717b-4251-9a80-243bc682f20f",
+			"target": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "Condition met",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-d694df01-717b-4251-9a80-243bc682f20f_success"
+		},
+		{
+			"id": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2-callNode-c6b83a3b-2427-450b-b529-567f0c7179de",
+			"type": "default",
+			"source": "assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2",
+			"target": "callNode-c6b83a3b-2427-450b-b529-567f0c7179de",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_assignmentNode-82a19340-493e-4716-a3db-7f9c287abdd2"
 		}
 	],
 	"viewport": {
-		"x": 0,
-		"y": 0,
+		"x": -1028,
+		"y": -114,
 		"zoom": 1
 	}
 }
