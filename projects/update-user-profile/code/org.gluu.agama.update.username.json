@@ -871,7 +871,7 @@
 				"width": 168,
 				"height": 120
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "finishNode-a028af5a-f9aa-47f9-a927-75086eccc2ac",
@@ -892,18 +892,20 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "END BLOCK",
 					"hasComment": true,
-					"comment": "",
+					"comment": " Finish the flow successfully",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "userName",
+					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		}
 	],
 	"edges": [
