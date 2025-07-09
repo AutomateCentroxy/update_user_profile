@@ -15,7 +15,8 @@
         ],
         "noDirectLaunch": [],
         "configs": {
-            "org.gluu.agama.registration.update": {}
+            "org.gluu.agama.registration.update": {},
+            "org.gluu.agama.update.username": {}
         },
         "name": "update-user-profile"
     }
