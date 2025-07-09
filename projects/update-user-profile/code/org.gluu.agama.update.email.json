@@ -295,7 +295,7 @@
 				"width": 110,
 				"height": 60
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -315,20 +315,27 @@
 				"previousNodeId": "whenNode-6f4abbbb-5942-49b5-94c4-f1bf14fda271",
 				"branching": "success",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "searchUserInput.uid",
+							"assignedVariableName": "userName"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "ASSIGNMENT",
 					"hasComment": true,
-					"comment": ""
+					"comment": "assign username to a variable"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-7e836d1c-3bb9-45c8-94a9-5c6ca960e2ed",
@@ -1274,8 +1281,8 @@
 		}
 	],
 	"viewport": {
-		"x": -634,
-		"y": -56,
+		"x": -854,
+		"y": -95,
 		"zoom": 1
 	}
 }
