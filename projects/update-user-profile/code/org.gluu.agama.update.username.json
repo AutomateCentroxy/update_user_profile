@@ -21,7 +21,7 @@
 					"basepath": "",
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
-					"timeout": "",
+					"timeout": "360",
 					"inputs": "",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.username",
@@ -32,17 +32,75 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 123
+				"width": 168,
+				"height": 120
 			},
 			"selected": false,
 			"dragging": false
+		},
+		{
+			"id": "assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276",
+			"type": "assignmentNode",
+			"position": {
+				"x": 267,
+				"y": 110
+			},
+			"data": {
+				"id": "assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276",
+				"type": "assignmentNode",
+				"position": {
+					"x": 267,
+					"y": 110
+				},
+				"previousNodeId": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e",
+				"agamaData": {
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{}",
+							"assignedVariableName": "uiFeedback"
+						}
+					],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "ASSIGNMENT",
+					"hasComment": true,
+					"comment": " Create  variable for UI feedback"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 123
+			},
+			"selected": true
 		}
 	],
-	"edges": [],
+	"edges": [
+		{
+			"id": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e-assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276",
+			"type": "default",
+			"source": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e",
+			"target": "assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e"
+		}
+	],
 	"viewport": {
-		"x": 0,
-		"y": 0,
+		"x": -9,
+		"y": 104,
 		"zoom": 1
 	}
 }
