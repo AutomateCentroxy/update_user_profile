@@ -677,20 +677,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "inum",
+							"operator": "is not",
+							"dataValue": "null",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": " If user update success"
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 60
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-d78552db-fd09-4ddb-8210-168fbe8ec170",
@@ -1327,8 +1335,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3301,
-		"y": 130,
+		"x": -2908,
+		"y": 242,
 		"zoom": 1
 	}
 }
