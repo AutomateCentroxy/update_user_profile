@@ -211,7 +211,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-ada623f6-c72b-4874-a2a0-2e098bb68f30",
@@ -229,8 +229,8 @@
 				},
 				"previousNodeId": "rrfNode-35a3c933-e8f4-4de3-80ad-129fd8a15453",
 				"agamaData": {
-					"javaClassName": "",
-					"javaMethodName": "",
+					"javaClassName": "org.gluu.agama.user.UsernameUpdate",
+					"javaMethodName": "getInstance",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
@@ -239,15 +239,17 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "CALL",
 					"hasComment": true,
-					"comment": ""
+					"comment": " create an instance of Update service",
+					"asssignedVariableName": "usernameUpdateService"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		}
 	],
 	"edges": [
