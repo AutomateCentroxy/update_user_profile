@@ -13,9 +13,10 @@ Repeat 6 times max
      When searchUserInput.formType is "searchUserForm"
           // assign username to a variable
           userName = searchUserInput.uid
-          Call __________#__________ 
+          // get user by username
+          userWithUid = Call usernameUpdateService getUserEntityByUsername userName
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_ksyii = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_ksyii
+it_ehfes = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ehfes
