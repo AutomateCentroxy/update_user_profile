@@ -720,21 +720,22 @@
 				"previousNodeId": "whenNode-3d7819a4-ff84-4e2c-a16c-eda9bc184ef5",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"User update failed. Error : %\" E",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " User update failed log"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-f84155ee-2688-43b8-be3c-35188e46368e",
@@ -1338,8 +1339,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2568,
-		"y": 339,
+		"x": -2885,
+		"y": 351,
 		"zoom": 1
 	}
 }
