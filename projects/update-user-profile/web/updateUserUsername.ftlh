@@ -18,7 +18,7 @@
 	  </div>
 	  <div class="header">
 		<i class="fas fa-user-plus">
-		</i> Update User Current Username
+		</i> Update User Username
 	  </div>
 	  <!-- Error Message Block -->
 	  [#if errorMessage?has_content]
