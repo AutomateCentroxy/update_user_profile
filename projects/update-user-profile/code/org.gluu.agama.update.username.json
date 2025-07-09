@@ -456,7 +456,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-5c889cd7-7c29-4082-94c6-edad9d6d5071",
@@ -831,7 +831,7 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "acknowledgement.ftlh",
+					"templatePath": "acknowledgementUsername.ftlh",
 					"asssignedVariableName": "acknowledgementInput",
 					"nodeColor": "",
 					"titleColor": "",
@@ -845,7 +845,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-a18452cc-6470-43b3-adf6-4753752eb63c",
@@ -1355,8 +1355,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1541,
-		"y": -153,
+		"x": -3262,
+		"y": -44,
 		"zoom": 1
 	}
 }
