@@ -28,12 +28,12 @@ Repeat 6 times max
                     uiFeedback.errorMessage = "User input fields are empty"
                     inum = userInput.inum
                Otherwise
-                    newEmail = userInput.mail
+                    email = userInput.mail
                     inum = userWithUid.inum
                     // Trigger sub-routine to verify email
-                    emailVerificationResult = Trigger org.gluu.agama.update.emailVerification newEmail
+                    emailVerificationResult = Trigger org.gluu.agama.update.emailVerification email
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_mchxf = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_mchxf
+it_omoaa = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_omoaa
