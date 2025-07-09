@@ -30,9 +30,10 @@ Repeat 6 times max
                Otherwise
                     //  Check user already exist or not with username
                     userWithUid = Call usernameUpdateService getUserEntityByInum inum
-                    Call __________#__________ 
+                    //  Call user registration service method to update a user
+                    inum = Call usernameUpdateService updateUser userInput
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_axaxx = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_axaxx
+it_opuis = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_opuis
