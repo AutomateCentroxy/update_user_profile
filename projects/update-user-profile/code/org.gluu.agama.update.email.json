@@ -584,8 +584,8 @@
 			"id": "callNode-f44e6fde-ab3b-4283-bd98-b43c53573600",
 			"type": "callNode",
 			"position": {
-				"x": 3663.86127413436,
-				"y": 2.6508974656603
+				"x": 3806.9193405803335,
+				"y": -5.502671088255298
 			},
 			"data": {
 				"id": "callNode-f44e6fde-ab3b-4283-bd98-b43c53573600",
@@ -625,8 +625,8 @@
 			"id": "callNode-1163888a-9feb-4d0c-9139-8d0fdbed05d1",
 			"type": "callNode",
 			"position": {
-				"x": 3930.050504546436,
-				"y": -10.840127877736691
+				"x": 4001.2089210169725,
+				"y": -12.322594887539523
 			},
 			"data": {
 				"id": "callNode-1163888a-9feb-4d0c-9139-8d0fdbed05d1",
@@ -1118,6 +1118,41 @@
 					"displayName": "",
 					"hasComment": true,
 					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "logNode-9e39a831-f7ee-400f-a4fc-5760214d41dc",
+			"type": "logNode",
+			"position": {
+				"x": 3412.2841366422517,
+				"y": 15.968542818702929
+			},
+			"data": {
+				"id": "logNode-9e39a831-f7ee-400f-a4fc-5760214d41dc",
+				"type": "logNode",
+				"position": {
+					"x": 3542,
+					"y": 119
+				},
+				"previousNodeId": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+				"branching": "success",
+				"agamaData": {
+					"logMessage": "\"E-mail verification passed, initiating user email update flow\"",
+					"logLevel": "info",
+					"nodeIcon": "octicon:log-16",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "E-mail verification passed, initiating user provisioning flow"
 				}
 			},
 			"measured": {
@@ -1641,11 +1676,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_whenNode-656d3da8-0f8b-4abf-8da6-c2fad855c64c_success"
+		},
+		{
+			"id": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a-logNode-9e39a831-f7ee-400f-a4fc-5760214d41dc",
+			"type": "default",
+			"source": "whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a",
+			"target": "logNode-9e39a831-f7ee-400f-a4fc-5760214d41dc",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "Condition met",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-47c98fc0-870a-44e3-86f8-8ac501e9ad0a_success"
 		}
 	],
 	"viewport": {
-		"x": -3348.693781534807,
-		"y": 640.8687863930288,
-		"zoom": 1
+		"x": -4348.0232295745,
+		"y": 238.148079907823,
+		"zoom": 1.3491025343396987
 	}
 }
