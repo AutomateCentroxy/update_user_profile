@@ -179,7 +179,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "rrfNode-6608a07f-27b5-4ed6-8ea4-5b2c1ed3114a",
@@ -200,20 +200,22 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "searchUser.ftlh",
+					"asssignedVariableName": "searchUserInput",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "RRF",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Retrieve user profile  from UI",
+					"arguments": "uiFeedback"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-5994fd36-9bba-4e51-a736-2f5c2a9d0b6f",
@@ -1263,8 +1265,8 @@
 		}
 	],
 	"viewport": {
-		"x": -31.006638059277293,
-		"y": 181.44115707352233,
-		"zoom": 1.0570180405613803
+		"x": 0,
+		"y": 0,
+		"zoom": 1
 	}
 }
