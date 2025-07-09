@@ -14,7 +14,7 @@
 	  <div class="separator">
 	  </div>
 	  <p class="message">
-		You've successfully Updated your profile !!!
+		You've successfully Updated your Email !!!
 		<br>
 	  </p>
 	  <form method="post" id="myForm" class="my-8">
