@@ -40,7 +40,8 @@ Repeat 6 times max
                          acknowledgementInput = RRF "acknowledgementEmail.ftlh" 
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
-                         Finish __________
+                         //  Finish the flow successfully
+                         Finish userName
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -48,5 +49,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_wwpjp = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_wwpjp
+it_wkrrv = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_wkrrv
