@@ -1,2 +1,5 @@
 Flow org.gluu.agama.update.username
      Basepath ""
+     Timeout 360 seconds
+//  Create  variable for UI feedback
+uiFeedback = {}
