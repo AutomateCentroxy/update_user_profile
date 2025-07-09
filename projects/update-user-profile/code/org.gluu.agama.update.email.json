@@ -335,7 +335,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-7e836d1c-3bb9-45c8-94a9-5c6ca960e2ed",
@@ -354,24 +354,28 @@
 				"previousNodeId": "assignmentNode-263ca30f-f4ce-4a60-8369-f27b59f2f824",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "getUserEntityByUsername",
+					"javaVariableName": "usernameUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"userName"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "CALL",
 					"hasComment": true,
-					"comment": ""
+					"comment": "get user by username",
+					"asssignedVariableName": "userWithUid"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-532b07c7-f7a9-4a53-a097-f7259278fa5f",
