@@ -392,20 +392,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "userWithUid.empty",
+							"operator": "is",
+							"dataValue": "true",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "when user with provided username not found"
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 60
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "rrfNode-82f7ec86-4ecf-4e76-b9dc-ffb28d306341",
@@ -458,20 +466,27 @@
 				"previousNodeId": "whenNode-2ae7d7d3-dc13-4be0-9828-9ca8ad771a71",
 				"branching": "success",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"User not registered with this UserName\"",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "ASSIGNMENT",
 					"hasComment": true,
-					"comment": ""
+					"comment": "show error"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 123
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-dc8141ac-0358-490d-a960-429549d1cb3a",
@@ -865,8 +880,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1917,
-		"y": 49,
-		"zoom": 1
+		"x": -1492.605828517424,
+		"y": -21.489580048225434,
+		"zoom": 0.860949188338904
 	}
 }
