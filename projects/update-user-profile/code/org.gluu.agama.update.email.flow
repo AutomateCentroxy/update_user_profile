@@ -5,5 +5,10 @@ Repeat __________ times max
      RRF "__________" 
      Call __________#__________ 
      When 
+          Call __________#__________ 
+          When 
+          Otherwise
+               RRF "__________" 
+               When 
 Log "@ " __________
 Finish __________
