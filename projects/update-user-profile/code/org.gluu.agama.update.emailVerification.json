@@ -277,7 +277,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "finishNode-c251181f-4929-4c93-a290-781b6207ad38",
@@ -523,7 +523,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -752,7 +752,7 @@
 					"hasComment": true,
 					"comment": "",
 					"flowfilename": "",
-					"returnVariable": "true",
+					"returnVariable": "emailObj",
 					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
@@ -1173,8 +1173,8 @@
 		}
 	],
 	"viewport": {
-		"x": -838.2475657190871,
-		"y": -106.15153490980958,
-		"zoom": 0.860949188338904
+		"x": -1491.6728650960895,
+		"y": 261.9187231597362,
+		"zoom": 1.161508731925722
 	}
 }
