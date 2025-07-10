@@ -38,6 +38,7 @@ max = Repeat 3 times max
                uiInput.resent = true
           // When passcode entered by user matches
           When uiInput.passcode is otpCode
+               emailObj.success = true
                Finish emailObj
           // Variable assigned when OTP entered by user does not matches
           uiInput.matches = false
