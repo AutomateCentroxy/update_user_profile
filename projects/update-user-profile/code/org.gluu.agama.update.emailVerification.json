@@ -277,7 +277,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "finishNode-c251181f-4929-4c93-a290-781b6207ad38",
@@ -732,7 +732,7 @@
 			"id": "finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9",
 			"type": "finishNode",
 			"position": {
-				"x": 3201.8939867244517,
+				"x": 3451.8939867244517,
 				"y": 669.2937739084264
 			},
 			"data": {
@@ -742,8 +742,7 @@
 					"x": 3201.8939867244517,
 					"y": 669.2937739084264
 				},
-				"previousNodeId": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e",
-				"branching": "success",
+				"previousNodeId": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
 				"agamaData": {
 					"nodeColor": "",
 					"titleColor": "",
@@ -762,6 +761,45 @@
 				"height": 122
 			},
 			"selected": false
+		},
+		{
+			"id": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+			"type": "assignmentNode",
+			"position": {
+				"x": 3201.8939867244517,
+				"y": 669.2937739084264
+			},
+			"data": {
+				"id": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+				"type": "assignmentNode",
+				"position": {
+					"x": 3201.8939867244517,
+					"y": 669.2937739084264
+				},
+				"previousNodeId": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e",
+				"branching": "success",
+				"agamaData": {
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "true",
+							"assignedVariableName": "emailObj.success"
+						}
+					],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-3a11390a-8ff6-43da-8f58-08461ae4ac56",
@@ -1134,25 +1172,6 @@
 			"sourceHandle": "source_whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e_continue"
 		},
 		{
-			"id": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e-finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9",
-			"type": "default",
-			"source": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e",
-			"target": "finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"label": "Condition met",
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"labelShowBg": true,
-			"sourceHandle": "source_whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e_success"
-		},
-		{
 			"id": "whenNode-147a967b-a133-4b00-b1b8-d2539a9029f1-assignmentNode-3a11390a-8ff6-43da-8f58-08461ae4ac56",
 			"type": "default",
 			"source": "whenNode-147a967b-a133-4b00-b1b8-d2539a9029f1",
@@ -1170,11 +1189,49 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_whenNode-147a967b-a133-4b00-b1b8-d2539a9029f1_success"
+		},
+		{
+			"id": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e-assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+			"type": "default",
+			"source": "whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e",
+			"target": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "Condition met",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-6dfdc4fa-669b-48b0-b681-ae47f0c0931e_success"
+		},
+		{
+			"id": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654-finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9",
+			"type": "default",
+			"source": "assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+			"target": "finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9",
+			"label": "",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"sourceHandle": "source_assignmentNode-960fc82f-dd6c-469d-b0ff-31e3f723e654",
+			"targetHandle": "target_finishNode-57d108a2-a5a6-4a52-96d0-8cfafc5cfdc9"
 		}
 	],
 	"viewport": {
-		"x": -1491.6728650960895,
-		"y": 261.9187231597362,
-		"zoom": 1.161508731925722
+		"x": -2322,
+		"y": -253,
+		"zoom": 1
 	}
 }
