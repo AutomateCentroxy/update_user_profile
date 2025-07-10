@@ -63,6 +63,11 @@
 							"variableTypeCheck": true,
 							"assignmentExpression": "\"\"",
 							"assignedVariableName": "uiFeedback.errorMessage"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{}",
+							"assignedVariableName": "emailObj"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -78,7 +83,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "repeatNode-a357a9e3-6b32-48ba-83ce-bdc38c063366",
@@ -142,8 +147,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -1774,8 +1779,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3849.8819614271324,
-		"y": 270.0234137835851,
-		"zoom": 1.161508731925722
+		"x": -35,
+		"y": 126,
+		"zoom": 1
 	}
 }
