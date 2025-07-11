@@ -1,6 +1,6 @@
 Flow org.gluu.agama.update.email
      Basepath ""
-     Timeout 900 seconds
+     Timeout 50000 seconds
 //  Create  variable for UI feedback
 uiFeedback = {}
 uiFeedback.errorMessage = ""
@@ -62,5 +62,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_pkwef = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_pkwef
+it_taqjb = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_taqjb
