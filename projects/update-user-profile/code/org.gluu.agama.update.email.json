@@ -21,7 +21,7 @@
 					"basepath": "",
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
-					"timeout": "900",
+					"timeout": "50000",
 					"inputs": "",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.email",
