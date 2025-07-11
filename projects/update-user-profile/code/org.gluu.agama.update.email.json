@@ -21,7 +21,7 @@
 					"basepath": "",
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
-					"timeout": "360",
+					"timeout": "900",
 					"inputs": "",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.email",
@@ -35,7 +35,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-8a7068cc-4e34-46f7-b0cc-e7b27a00f608",
@@ -83,7 +83,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "repeatNode-a357a9e3-6b32-48ba-83ce-bdc38c063366",
@@ -1779,8 +1779,8 @@
 		}
 	],
 	"viewport": {
-		"x": -35,
-		"y": 126,
+		"x": 0,
+		"y": 0,
 		"zoom": 1
 	}
 }
