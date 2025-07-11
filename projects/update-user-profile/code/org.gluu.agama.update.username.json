@@ -21,7 +21,7 @@
 					"basepath": "",
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
-					"timeout": "900",
+					"timeout": "50000",
 					"inputs": "",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.username",
@@ -1355,8 +1355,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2159.4229345942035,
-		"y": 242.57673000022174,
-		"zoom": 0.7412335049014176
+		"x": 0,
+		"y": 0,
+		"zoom": 1
 	}
 }
