@@ -1,11 +1,11 @@
 package org.gluu.agama.user;
 
 import java.util.Map;
-import org.gluu.agama.update.JansEmailUpdate;
+import org.gluu.agama.update.JansUsernameUpdate;
 
 
 
-public abstract class EmailUpdate {
+public abstract class UsernameUpdate {
     public abstract String addNewUser(Map<String, String> profile) throws Exception;
 
     public abstract boolean usernamePolicyMatch(String userName);
@@ -14,11 +14,9 @@ public abstract class EmailUpdate {
 
     public abstract String updateUser(Map<String, String> profile) throws Exception;
 
-    public abstract String sendEmail(String to);
-
     public abstract Map<String, String> getUserEntityByInum(String inum);
 
-    public static EmailUpdate getInstance(){
-        return  JansEmailUpdate.getInstance();
+    public static UsernameUpdate getInstance(){
+        return  JansUsernameUpdate.getInstance();
     }    
 }
