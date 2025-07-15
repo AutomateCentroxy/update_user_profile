@@ -17,9 +17,7 @@
         "configs": {
             "org.gluu.agama.registration.update": {},
             "org.gluu.agama.update.username": {},
-            "org.gluu.agama.update.email": {},
-            "": {},
-            "org.gluu.agama.update.emailVerification": {}
+            "": {}
         },
         "name": "update-user-profile"
     }
