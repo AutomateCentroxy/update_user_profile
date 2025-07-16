@@ -42,7 +42,7 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         Finish userName
+                         Finish userInput
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -50,5 +50,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_ztrhd = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_ztrhd
+it_kmjew = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_kmjew
