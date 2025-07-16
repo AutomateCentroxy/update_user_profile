@@ -943,8 +943,8 @@
 					"hasComment": true,
 					"comment": " Finish the flow successfully",
 					"flowfilename": "",
-					"returnVariable": "updatedUser",
-					"finishMode": "withVariable",
+					"returnVariable": "{ success: true, userId: updatedUser.uid,  data: updatedUser      }",
+					"finishMode": "withSuccess",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
@@ -1414,8 +1414,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2879.5249670552403,
-		"y": 151.22647860873263,
-		"zoom": 0.9229733230153233
+		"x": -3694.925767146173,
+		"y": 97.06631583768274,
+		"zoom": 1
 	}
 }
