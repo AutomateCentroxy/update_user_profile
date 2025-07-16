@@ -918,7 +918,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "finishNode-a028af5a-f9aa-47f9-a927-75086eccc2ac",
@@ -943,7 +943,7 @@
 					"hasComment": true,
 					"comment": " Finish the flow successfully",
 					"flowfilename": "",
-					"returnVariable": "userInput",
+					"returnVariable": "updatedUser",
 					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
@@ -952,7 +952,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		}
 	],
 	"edges": [
@@ -1414,8 +1414,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2704.449819463623,
-		"y": 171.97587886058687,
-		"zoom": 0.8572439793551117
+		"x": -2879.5249670552403,
+		"y": 151.22647860873263,
+		"zoom": 0.9229733230153233
 	}
 }
