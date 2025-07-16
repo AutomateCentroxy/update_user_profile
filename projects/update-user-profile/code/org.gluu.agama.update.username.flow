@@ -35,6 +35,7 @@ Repeat 6 times max
                     inum = Call usernameUpdateService updateUser userInput
                     //  If user update success
                     When inum is not null
+                         updatedUser = Call usernameUpdateService getUserEntityByInum inum
                          //  Show user updation log
                          Log "@info User % has been updated" inum
                          //  Show acknowledgement UI page for successful Update 
@@ -50,5 +51,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_kmjew = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_kmjew
+it_fsjxp = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_fsjxp
