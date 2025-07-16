@@ -192,6 +192,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             // Creating a modifiable HashMap directly
             Map<String, String> userMap = new HashMap<>();
             userMap.put(UID, uid);
+            userMap.put("userId", uid);
             userMap.put(INUM_ATTR, inum);
             userMap.put("name", name);
             userMap.put("email", email);
