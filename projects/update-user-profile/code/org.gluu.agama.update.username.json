@@ -908,7 +908,7 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "updatedUser",
 					"hasComment": true,
 					"comment": "",
 					"asssignedVariableName": "updatedUser"
@@ -918,7 +918,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "finishNode-a028af5a-f9aa-47f9-a927-75086eccc2ac",
@@ -952,7 +952,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		}
 	],
@@ -1415,8 +1415,8 @@
 		}
 	],
 	"viewport": {
-		"x": 417.9554695615118,
-		"y": 74.10091191430462,
+		"x": -2150.044530438489,
+		"y": 151.10091191430467,
 		"zoom": 0.7412335049014176
 	}
 }
