@@ -226,33 +226,43 @@ public class JansUsernameUpdate extends UsernameUpdate {
     public boolean sendUsernameUpdateEmail(String email, String newUsername) {
         try {
             // Fetch SMTP configuration
-            ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
-            SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
-
-            if (smtpConfig == null) {
+            SmtpConfiguration smtpConfiguration = getSmtpConfiguration();
+            if (smtpConfiguration == null) {
                 LogUtils.log("SMTP configuration is missing.");
                 return false;
             }
 
-            // Build context data (for device info, timezone, etc.)
-            ContextData context = new ContextData();
-            context.setDevice("Unknown"); // Example: Could be enhanced with request info
-            context.setLocation("Unknown"); // Example: GeoIP could populate this
-            context.setTimeZone("Unknown");
-
-            // Prepare email content using your EmailTemplate class
-            String emailBody = EmailTemplate.get(newUsername, context);
+            // Prepare email details
+            String from = smtpConfiguration.getFromEmailAddress();
             String subject = "Your username has been updated successfully";
+            String textBody = String.format(
+                    "Dear user,\n\nYour username has been successfully updated to: %s\n\nThank you.", newUsername);
 
-            // Send email
+            // Context data for HTML email template (if needed)
+            ContextData context = new ContextData();
+            context.setDevice("Unknown");
+            context.setTimeZone("Unknown");
+            context.setLocation("Unknown");
+            String htmlBody = EmailTemplate.get(newUsername, context); // HTML version (can use template)
+
+            // Send email (signed)
             MailService mailService = CdiUtil.bean(MailService.class);
-            mailService.sendMail(email, subject, emailBody, smtpConfig);
-
-            LogUtils.log("Username update email sent successfully to %", email);
-            return true;
+            if (mailService.sendMailSigned(from, from, email, null, subject, textBody, htmlBody)) {
+                LogUtils.log("Username update email sent successfully to %", email);
+                return true;
+            } else {
+                LogUtils.log("Failed to deliver email to %", email);
+                return false;
+            }
         } catch (Exception e) {
             LogUtils.log("Failed to send username update email: %", e.getMessage());
             return false;
         }
+    }
+
+    // Helper method to fetch SMTP configuration
+    private SmtpConfiguration getSmtpConfiguration() {
+        ConfigurationService configurationService = CdiUtil.bean(ConfigurationService.class);
+        return configurationService.getConfiguration().getSmtpConfiguration();
     }
 }
