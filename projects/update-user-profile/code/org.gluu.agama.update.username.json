@@ -938,21 +938,32 @@
 				},
 				"previousNodeId": "logNode-08970cfe-fa05-42f4-8752-85ec81bb464c",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "updatedUser.email",
+							"assignedVariableName": "email"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "updatedUser.uid",
+							"assignedVariableName": "newUsername"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Extract fields from updated user"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -989,7 +1000,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "logNode-6259a2a7-7cc8-476e-88f5-0f2334a880ab",
@@ -1022,7 +1034,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1577,8 +1589,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3414.777511090747,
-		"y": 94.52280727462562,
-		"zoom": 1
+		"x": -4835.721355695701,
+		"y": -80.2578345332289,
+		"zoom": 1.3491025343396987
 	}
 }
