@@ -43,14 +43,15 @@ Repeat 6 times max
                          newUsername = updatedUser.uid
                          // Send confirmation email
                          emailStatus = Call usernameUpdateService sendUsernameUpdateEmail email newUsername
-                         Log "@ " __________
+                         // Email send to to the user
+                         Log "@info Email send to to the user"
                          //  Show acknowledgement UI page for successful Update 
                          acknowledgementInput = RRF "acknowledgementUsername.ftlh" 
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_oqxwt = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_oqxwt
+                         it_qpywh = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_qpywh
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -58,5 +59,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_bxydm = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_bxydm
+it_wuiqd = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_wuiqd
