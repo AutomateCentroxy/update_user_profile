@@ -963,7 +963,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -983,25 +983,29 @@
 				"previousNodeId": "assignmentNode-803b5142-061b-4c85-a0bf-f4fc90af0f47",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "sendUsernameUpdateEmail",
+					"javaVariableName": "usernameUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"email",
+						"newUsername"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Send confirmation email",
+					"asssignedVariableName": "emailStatus"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-6259a2a7-7cc8-476e-88f5-0f2334a880ab",
@@ -1589,8 +1593,8 @@
 		}
 	],
 	"viewport": {
-		"x": -4835.721355695701,
-		"y": -80.2578345332289,
+		"x": -5178.721355695701,
+		"y": -114.2578345332289,
 		"zoom": 1.3491025343396987
 	}
 }
