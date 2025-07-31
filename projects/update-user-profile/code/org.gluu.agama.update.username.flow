@@ -38,13 +38,15 @@ Repeat 6 times max
                          updatedUser = Call usernameUpdateService getUserEntityByInum inum
                          //  Show user updation log
                          Log "@info User % has been updated" inum
+                         Call __________#__________ 
+                         Log "@ " __________
                          //  Show acknowledgement UI page for successful Update 
                          acknowledgementInput = RRF "acknowledgementUsername.ftlh" 
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_aegrc = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_aegrc
+                         it_ubtzt = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_ubtzt
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -52,5 +54,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_yghrm = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_yghrm
+it_omrur = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_omrur
