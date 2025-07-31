@@ -16,6 +16,8 @@ public abstract class UsernameUpdate {
 
     public abstract Map<String, String> getUserEntityByInum(String inum);
 
+    public abstract boolean sendUsernameUpdateEmail(String email, String newUsername);
+
     public static UsernameUpdate getInstance(){
         return  JansUsernameUpdate.getInstance();
     }    
