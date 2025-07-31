@@ -223,37 +223,41 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public boolean sendUsernameUpdateEmail(String email, String newUsername) {
+    public boolean sendUsernameUpdateEmail(String to, String newUsername) {
         try {
             // Fetch SMTP configuration
-            SmtpConfiguration smtpConfiguration = getSmtpConfiguration();
-            if (smtpConfiguration == null) {
+            ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
+            SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
+
+            if (smtpConfig == null) {
                 LogUtils.log("SMTP configuration is missing.");
                 return false;
             }
 
-            // Prepare email details
-            String from = smtpConfiguration.getFromEmailAddress();
-            String subject = "Your username has been updated successfully";
-            String textBody = String.format(
-                    "Dear user,\n\nYour username has been successfully updated to: %s\n\nThank you.", newUsername);
-
-            // Context data for HTML email template (if needed)
+            // Build context data
             ContextData context = new ContextData();
             context.setDevice("Unknown");
-            context.setTimeZone("Unknown");
             context.setLocation("Unknown");
-            String htmlBody = EmailTemplate.get(newUsername, context); // HTML version (can use template)
+            context.setTimeZone("UTC");
 
-            // Send email (signed)
+            // Prepare email content
+            String htmlBody = EmailTemplate.get(newUsername, context);
+            String subject = "Your username has been updated successfully";
+            String textBody = "Your username has been updated to: " + newUsername;
+
+            // Send signed email
             MailService mailService = CdiUtil.bean(MailService.class);
-            if (mailService.sendMailSigned(from, from, email, null, subject, textBody, htmlBody)) {
-                LogUtils.log("Username update email sent successfully to %", email);
-                return true;
-            } else {
-                LogUtils.log("Failed to deliver email to %", email);
-                return false;
-            }
+            boolean sent = mailService.sendMailSigned(
+                    smtpConfig.getFromEmailAddress(),
+                    smtpConfig.getFromName(),
+                    to,
+                    null,
+                    subject,
+                    textBody,
+                    htmlBody);
+
+            LogUtils.log("Username update email sent successfully to %", to);
+            return sent;
         } catch (Exception e) {
             LogUtils.log("Failed to send username update email: %", e.getMessage());
             return false;
