@@ -2,42 +2,38 @@ package org.gluu.agama.smtp;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import org.gluu.agama.smtp.jans.model.ContextData;
 
 class EmailTemplate {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, YYYY, hh:mma (O)");
 
-    static String get(String username, ContextData context) {
+    static String get(String username, ContextData context, Map<String, String> bundle) {
         return """
 <div style="width: 640px; font-size: 18px; font-family: 'Roboto', sans-serif; font-weight: 300; color: #333;">
 
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <div style="padding: 20px; border-bottom: 1px solid #ccc;">
         <p><b>Hi,</b><br><br>
-        Your username has been successfully updated.</p>
+        """ + bundle.get("body") + """</p>
 
         <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <div style="background-color: #F4E2C5; color: #495057; font-size: 30px; font-weight: 500; padding: 10px 20px; border-radius: 8px;" align="center">
-                New Username: ${username}
+            <div style="background-color: #B29163; color: white; font-size: 30px; font-weight: 500; padding: 10px 20px; border-radius: 8px;" align="center">
+                """ + username + """
             </div>
         </div>
 
         <p style="font-size: 14px;">
-            If you did not request this change, please contact our support team immediately.
-        </p>
-
-        <p>
-        Thanks for keeping your account secure.<br>
-        The PhiWallet Team
+            """ + bundle.get("footer") + """
         </p>
     </div>
 
     <!-- Date Section -->
     <div style="padding: 12px; background-color: #ecf0f5; font-size: 16px;">
-        <p style="color: #48596b; font-weight: 500;">When this happened:</p>
-        <p><span style="color: #48596b; font-weight: 500;">Date:</span><br>${computeDateTime(context.timeZone)}</p>
+        <p style="color: #48596b; font-weight: 500;">""" + bundle.getOrDefault("dateLabel", "When this happened:") + """</p>
+        <p><span style="color: #48596b; font-weight: 500;">Date:</span><br>""" + computeDateTime(context.getTimeZone()) + """</p>
     </div>
 
     <!-- Contact Us Section -->
@@ -47,14 +43,13 @@ class EmailTemplate {
             <p style="margin: 8px 0;">NIPC: 516547186<br>Gold dealer license: T7164</p>
         </div>
         <div style="flex: 1;">
-            <p style="font-weight: bold; margin-bottom: 5px;">Get in touch</p>
+            <p style="font-weight: bold; margin-bottom: 5px;">""" + bundle.getOrDefault("contactTitle", "Get in touch") + """</p>
             <p>📱 +351 308 802 610<br>
                📱 +34 518 89 80 81<br>
                ✉️ <a href="mailto:support@phiwallet.com" style="color:#333;">support@phiwallet.com</a><br>
                📍 Avenida da Liberdade 262, R/C esquerdo, Lisbon 1250-149, Portugal</p>
         </div>
     </div>
-
 </div>
         """;
     }
@@ -68,3 +63,4 @@ class EmailTemplate {
         }
     }
 }
+
