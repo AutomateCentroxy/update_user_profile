@@ -948,6 +948,11 @@
 							"variableTypeCheck": true,
 							"assignmentExpression": "updatedUser.uid",
 							"assignedVariableName": "newUsername"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "updatedUser.preferredLanguage",
+							"assignedVariableName": "preferredLanguage"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -963,7 +968,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1038,7 +1043,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1593,8 +1598,8 @@
 		}
 	],
 	"viewport": {
-		"x": -6446.370950847173,
-		"y": -245.38566528196804,
-		"zoom": 1.5669943738986813
+		"x": -3620,
+		"y": -51,
+		"zoom": 1
 	}
 }
