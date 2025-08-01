@@ -33,6 +33,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
+    private static final String PREFERRED_LANGUAGE = "preferredLanguage";
     private static final SecureRandom RAND = new SecureRandom();
 
     private static JansUsernameUpdate INSTANCE = null;
@@ -103,6 +104,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
+            String lang = getSingleValuedAttr(user, PREFERRED_LANGUAGE);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -118,6 +120,8 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("email", email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
+            userMap.put(PREFERRED_LANGUAGE, lang);
+
 
             return userMap;
         }
@@ -182,6 +186,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String userPassword = getSingleValuedAttr(user, PASSWORD);
+            String lang = getSingleValuedAttr(user, PREFERRED_LANGUAGE);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -199,6 +204,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(PASSWORD, userPassword);
+            userMap.put(PREFERRED_LANGUAGE, lang);
 
             return userMap;
         }
