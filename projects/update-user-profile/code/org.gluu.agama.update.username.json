@@ -951,8 +951,8 @@
 						},
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "updatedUser.preferredLanguage",
-							"assignedVariableName": "preferredLanguage"
+							"assignmentExpression": "updatedUser.language",
+							"assignedVariableName": "language"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -968,7 +968,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1044,7 +1044,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
