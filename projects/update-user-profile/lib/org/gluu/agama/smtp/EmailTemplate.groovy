@@ -21,7 +21,7 @@ class EmailTemplate {
 
         <div style="display: flex; justify-content: center; margin: 20px 0;">
             <div style="background-color: #B29163; color: white; font-size: 30px; font-weight: 500; padding: 10px 20px; border-radius: 8px;" align="center">
-                """ + username + """
+                "New Username: " + username +
             </div>
         </div>
 
@@ -63,4 +63,3 @@ class EmailTemplate {
         }
     }
 }
-
