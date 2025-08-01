@@ -41,6 +41,7 @@ Repeat 6 times max
                          // Extract fields from updated user
                          email = updatedUser.email
                          newUsername = updatedUser.uid
+                         preferredLanguage = updatedUser.preferredLanguage
                          // Send confirmation email
                          emailStatus = Call usernameUpdateService sendUsernameUpdateEmail email newUsername
                          // Email send to to the user
@@ -50,8 +51,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_qpywh = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_qpywh
+                         it_uzuoc = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_uzuoc
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -59,5 +60,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_wuiqd = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_wuiqd
+it_ozhtv = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ozhtv
