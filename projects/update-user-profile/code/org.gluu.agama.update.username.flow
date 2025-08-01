@@ -43,7 +43,7 @@ Repeat 6 times max
                          newUsername = updatedUser.uid
                          language = updatedUser.language
                          // Send confirmation email
-                         emailStatus = Call usernameUpdateService sendUsernameUpdateEmail email newUsername preferredLanguage
+                         emailStatus = Call usernameUpdateService sendUsernameUpdateEmail email newUsername language
                          // Email send to to the user
                          Log "@info Email send to to the user" language
                          //  Show acknowledgement UI page for successful Update 
@@ -51,8 +51,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_vfsea = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_vfsea
+                         it_tnaag = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_tnaag
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -60,5 +60,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_udymg = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_udymg
+it_lazlb = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_lazlb
