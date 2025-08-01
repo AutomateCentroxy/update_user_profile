@@ -11,8 +11,6 @@ class EmailTemplate {
     static String get(String username, ContextData context) {
         return """
 <div style="width: 640px; font-size: 18px; font-family: 'Roboto', sans-serif; font-weight: 300">
-    <div style="background-color: #b6f6da; border-bottom: 1px solid #0ca65d; height: 60px;">
-    </div>
     <div style="padding: 12px; border-bottom: 1px solid #ccc;">
         <p>
         <b>Hi,</b>
@@ -37,8 +35,6 @@ class EmailTemplate {
     <div style="padding: 12px; background-color: #ecf0f5; font-size: 16px">
         <p style="color: #48596b; font-weight: 500">When and where this happened:</p>
         <p><span style="color: #48596b; font-weight: 500">Date:</span><br>${computeDateTime(context.timeZone)}</p>
-        <p><span style="color: #48596b; font-weight: 500">${(context.device == null || context.device.length() == 0) ? "" : ("Device:</span><br>" + context.device)}</p>
-        <p><span style="color: #48596b; font-weight: 500">${(context.location == null || context.location.length() == 0) ? "" : ("Approximate Location:</span><br>" + context.location)}</p>
     </div>
 </div>
         """;
