@@ -948,6 +948,11 @@
 							"variableTypeCheck": true,
 							"assignmentExpression": "updatedUser.uid",
 							"assignedVariableName": "newUsername"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "updatedUser.language",
+							"assignedVariableName": "language"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -989,7 +994,8 @@
 					"callType": "Call method on instance",
 					"arguments": [
 						"email",
-						"newUsername"
+						"newUsername",
+						"language"
 					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
@@ -1005,7 +1011,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-6259a2a7-7cc8-476e-88f5-0f2334a880ab",
@@ -1023,7 +1029,7 @@
 				},
 				"previousNodeId": "callNode-4e073ff4-8490-4f7c-bbd7-c85ea6760ccb",
 				"agamaData": {
-					"logMessage": "\"Email send to to the user\"",
+					"logMessage": "\"Email send to to the user\" language",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -1038,7 +1044,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1593,8 +1599,8 @@
 		}
 	],
 	"viewport": {
-		"x": -6446.370950847173,
-		"y": -245.38566528196804,
-		"zoom": 1.5669943738986813
+		"x": -3774,
+		"y": -77,
+		"zoom": 1
 	}
 }

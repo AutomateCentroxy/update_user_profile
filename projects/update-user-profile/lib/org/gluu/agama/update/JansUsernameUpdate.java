@@ -33,6 +33,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
+    private static final String LANGUAGE = "language";
     private static final SecureRandom RAND = new SecureRandom();
 
     private static JansUsernameUpdate INSTANCE = null;
@@ -103,6 +104,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
+            String lang = getSingleValuedAttr(user, LANGUAGE);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -118,6 +120,8 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("email", email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
+            userMap.put(LANGUAGE, lang);
+
 
             return userMap;
         }
@@ -182,6 +186,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String userPassword = getSingleValuedAttr(user, PASSWORD);
+            String lang = getSingleValuedAttr(user, LANGUAGE);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -199,6 +204,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(PASSWORD, userPassword);
+            userMap.put(LANGUAGE, lang);
 
             return userMap;
         }
@@ -223,46 +229,88 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public boolean sendUsernameUpdateEmail(String to, String newUsername) {
+    public boolean sendUsernameUpdateEmail(String to, String newUsername, String language) {
         try {
-            // Fetch SMTP configuration
-            ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
-            SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
+        // Fetch SMTP configuration
+        ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
+        SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
 
-            if (smtpConfig == null) {
-                LogUtils.log("SMTP configuration is missing.");
-                return false;
-            }
-
-            // Build context data
-            ContextData context = new ContextData();
-            context.setDevice("Unknown");
-            context.setLocation("Unknown");
-            context.setTimeZone("UTC");
-
-            // Prepare email content
-            String htmlBody = EmailTemplate.get(newUsername, context);
-            String subject = "Your username has been updated successfully";
-            String textBody = "Your username has been updated to: " + newUsername;
-
-            // Send signed email
-            MailService mailService = CdiUtil.bean(MailService.class);
-            boolean sent = mailService.sendMailSigned(
-                    smtpConfig.getFromEmailAddress(),
-                    smtpConfig.getFromName(),
-                    to,
-                    null,
-                    subject,
-                    textBody,
-                    htmlBody);
-
-            LogUtils.log("Username update email sent successfully to %", to);
-            return sent;
-        } catch (Exception e) {
-            LogUtils.log("Failed to send username update email: %", e.getMessage());
+        if (smtpConfig == null) {
+            LogUtils.log("SMTP configuration is missing.");
             return false;
         }
+
+        // Use preferred language from Agama directly
+        String lang = (language != null && !language.isEmpty())
+                ? language.toLowerCase()
+                : "en"; // fallback to English
+
+        // ✅ Inline translations
+        Map<String, Map<String, String>> translations = new HashMap<>();
+        translations.put("en", Map.of(
+            "subject", "Your username has been updated successfully",
+            "body", "Your username has been updated to",
+            "footer", "Thanks for keeping your account secure."
+        ));
+        translations.put("es", Map.of(
+            "subject", "Su nombre de usuario se ha actualizado correctamente",
+            "body", "Su nombre de usuario se ha actualizado a",
+            "footer", "Gracias por mantener su cuenta segura."
+        ));
+        translations.put("fr", Map.of(
+            "subject", "Votre nom d'utilisateur a été mis à jour avec succès",
+            "body", "Votre nom d'utilisateur a été mis à jour en",
+            "footer", "Merci de garder votre compte sécurisé."
+        ));
+        translations.put("pt", Map.of(
+            "subject", "Seu nome de usuário foi atualizado com sucesso",
+            "body", "Seu nome de usuário foi atualizado para",
+            "footer", "Obrigado por manter sua conta segura."
+        ));
+        translations.put("ar", Map.of(
+            "subject", "تم تحديث اسم المستخدم الخاص بك بنجاح",
+            "body", "تم تحديث اسم المستخدم الخاص بك إلى",
+            "footer", "شكرًا للحفاظ على أمان حسابك."
+        ));
+        translations.put("id", Map.of(
+            "subject", "Nama pengguna Anda berhasil diperbarui",
+            "body", "Nama pengguna Anda telah diperbarui menjadi",
+            "footer", "Terima kasih telah menjaga keamanan akun Anda."
+        ));
+
+        // ✅ Pick the right language (fallback to English if missing)
+        Map<String, String> bundle = translations.getOrDefault(lang, translations.get("en"));
+
+        // Build context data
+        ContextData context = new ContextData();
+        context.setDevice("Unknown");
+        context.setLocation("Unknown");
+        context.setTimeZone("UTC");
+
+        // Prepare localized email content
+        String htmlBody = EmailTemplate.get(newUsername, context, bundle);
+        String subject = bundle.get("subject");
+        String textBody = bundle.get("body") + ": " + newUsername;
+
+        // Send signed email
+        MailService mailService = CdiUtil.bean(MailService.class);
+        boolean sent = mailService.sendMailSigned(
+                smtpConfig.getFromEmailAddress(),
+                smtpConfig.getFromName(),
+                to,
+                null,
+                subject,
+                textBody,
+                htmlBody
+        );
+
+        LogUtils.log("Localized username update email sent successfully to %", to);
+        return sent;
+    } catch (Exception e) {
+        LogUtils.log("Failed to send username update email: %", e.getMessage());
+        return false;
     }
+}
 
     // Helper method to fetch SMTP configuration
     private SmtpConfiguration getSmtpConfiguration() {
