@@ -12,10 +12,6 @@ class EmailTemplate {
         return """
 <div style="width: 640px; font-size: 18px; font-family: 'Roboto', sans-serif; font-weight: 300; color: #333;">
 
-    <!-- Header with logo -->
-    <div style="background-color: #B29163; padding: 15px; text-align: center;">
-        <img src="https://phiwallet.com/components/images/logo.png" alt="PhiWallet Logo" style="height: 50px;">
-    </div>
 
     <!-- Main content -->
     <div style="padding: 20px; border-bottom: 1px solid #ccc;">
