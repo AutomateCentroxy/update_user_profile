@@ -151,7 +151,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     }
 
     public String updateUser(Map<String, String> profile) throws Exception {
-        Set<String> attributes = Set.of("uid");
+        Set<String> attributes = Set.of("uid", "mail");
         User user = getUser(INUM_ATTR, profile.get(INUM_ATTR));
 
         attributes.forEach(attr -> {
@@ -200,7 +200,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("userId", uid);
             userMap.put(INUM_ATTR, inum);
             userMap.put("name", name);
-            userMap.put("email", email);
+            userMap.put(MAIL, email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(PASSWORD, userPassword);
