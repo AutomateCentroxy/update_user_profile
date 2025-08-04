@@ -921,7 +921,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -943,7 +943,7 @@
 					"assignments": [
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "updatedUser.mail",
+							"assignmentExpression": "updatedUser.email",
 							"assignedVariableName": "email"
 						},
 						{
@@ -970,7 +970,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1601,8 +1601,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2940.635781875564,
-		"y": 247.68901447073392,
-		"zoom": 0.9460576467255961
+		"x": -3419.222430670433,
+		"y": 38.223145325934865,
+		"zoom": 1
 	}
 }
