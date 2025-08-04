@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.regex.Pattern;
-import org.gluu.agama.smtp.EmailTemplate;
+import org.gluu.agama.smtp.SendEmailTemplate;
 import org.gluu.agama.smtp.jans.model.ContextData;
 import io.jans.model.SmtpConfiguration;
 import io.jans.service.MailService;
@@ -297,7 +297,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             context.setTimeZone("UTC");
 
             // Prepare localized email content
-            String htmlBody = EmailTemplate.get(newUsername, context, bundle);
+            String htmlBody = SendEmailTemplate.get(newUsername, context, bundle);
             String subject = bundle.get("subject");
             String textBody = bundle.get("body") + ": " + newUsername;
 
