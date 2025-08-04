@@ -288,7 +288,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
         context.setTimeZone("UTC");
 
         // Prepare localized email content
-        String htmlBody = EmailTemplate.get(newUsername, context, bundle);
+        String htmlBody = SendEmailTemplate.get(newUsername, context, bundle);
         String subject = bundle.get("subject");
         String textBody = bundle.get("body") + ": " + newUsername;
 
