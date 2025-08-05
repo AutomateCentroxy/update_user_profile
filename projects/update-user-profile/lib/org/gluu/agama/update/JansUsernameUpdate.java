@@ -256,7 +256,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             }
 
             // Use preferred lang from Agama directly
-            String lang = (lang != null && !lang.isEmpty())
+            String preferredLang = (lang != null && !lang.isEmpty())
                     ? lang.toLowerCase()
                     : "en"; // fallback to English
 
@@ -288,7 +288,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
                     "footer", "Terima kasih telah menjaga keamanan akun Anda."));
 
             // ✅ Pick the right lang (fallback to English if missing)
-            Map<String, String> bundle = translations.getOrDefault(lang, translations.get("en"));
+            Map<String, String> bundle = translations.getOrDefault(preferredLang, translations.get("en"));
 
             // Build context data
             ContextData context = new ContextData();
