@@ -705,7 +705,8 @@
 				"width": 109,
 				"height": 58
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "logNode-d78552db-fd09-4ddb-8210-168fbe8ec170",
@@ -920,7 +921,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "assignmentNode-803b5142-061b-4c85-a0bf-f4fc90af0f47",
@@ -951,8 +953,8 @@
 						},
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "updatedUser.language",
-							"assignedVariableName": "language"
+							"assignmentExpression": "updatedUser.lang",
+							"assignedVariableName": "lang"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -995,7 +997,7 @@
 					"arguments": [
 						"email",
 						"newUsername",
-						"language"
+						"lang"
 					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
@@ -1011,7 +1013,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-6259a2a7-7cc8-476e-88f5-0f2334a880ab",
@@ -1029,7 +1031,7 @@
 				},
 				"previousNodeId": "callNode-4e073ff4-8490-4f7c-bbd7-c85ea6760ccb",
 				"agamaData": {
-					"logMessage": "\"Email send to to the user\" language",
+					"logMessage": "\"Email send to to the user\" lang email newUsername",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -1044,7 +1046,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1599,8 +1601,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3774,
-		"y": -77,
+		"x": -3855,
+		"y": 46,
 		"zoom": 1
 	}
 }

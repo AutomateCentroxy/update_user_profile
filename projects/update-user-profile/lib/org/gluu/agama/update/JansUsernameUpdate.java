@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.regex.Pattern;
-import org.gluu.agama.smtp.EmailTemplate;
+import org.gluu.agama.smtp.SendEmailTemplate;
 import org.gluu.agama.smtp.jans.model.ContextData;
 import io.jans.model.SmtpConfiguration;
 import io.jans.service.MailService;
@@ -33,7 +33,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
-    private static final String LANGUAGE = "language";
+    private static final String LANG = "lang";
     private static final SecureRandom RAND = new SecureRandom();
 
     private static JansUsernameUpdate INSTANCE = null;
@@ -104,7 +104,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
-            String lang = getSingleValuedAttr(user, LANGUAGE);
+            String lang = getSingleValuedAttr(user, LANG);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -120,8 +120,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("email", email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
-            userMap.put(LANGUAGE, lang);
-
+            userMap.put(LANG, lang);
 
             return userMap;
         }
@@ -151,22 +150,38 @@ public class JansUsernameUpdate extends UsernameUpdate {
     }
 
     public String updateUser(Map<String, String> profile) throws Exception {
-        Set<String> attributes = Set.of("uid", "mail");
-        User user = getUser(INUM_ATTR, profile.get(INUM_ATTR));
-
-        attributes.forEach(attr -> {
-            String val = profile.get(attr);
-            LogUtils.log("******** attr: % , val: %", attr, val);
-            if (StringHelper.isNotEmpty(val)) {
-                user.setAttribute(attr, val);
-            }
-        });
-        user.setUserId(profile.get(UID));
-        UserService userService = CdiUtil.bean(UserService.class);
-        user = userService.updateUser(user); // Set user status active
+        String inum = profile.get(INUM_ATTR);
+        User user = getUser(INUM_ATTR, inum);
 
         if (user == null) {
-            throw new EntryNotFoundException("Added user not found");
+            throw new EntryNotFoundException("User not found for inum: " + inum);
+        }
+
+        // 🔒 Preserve current email and lang
+        String currentEmail = getSingleValuedAttr(user, MAIL);
+        String currentLanguage = getSingleValuedAttr(user, LANG);
+
+        // ✅ Update UID if provided
+        String newUid = profile.get(UID);
+        if (StringHelper.isNotEmpty(newUid)) {
+            user.setAttribute(UID, newUid);
+            user.setUserId(newUid);
+        }
+
+        // ✅ Always preserve email and lang
+        if (StringHelper.isNotEmpty(currentEmail)) {
+            user.setAttribute(MAIL, currentEmail);
+        }
+        if (StringHelper.isNotEmpty(currentLanguage)) {
+            user.setAttribute(LANG, currentLanguage);
+        }
+
+        // ✅ Save the user
+        UserService userService = CdiUtil.bean(UserService.class);
+        user = userService.updateUser(user);
+
+        if (user == null) {
+            throw new EntryNotFoundException("Updated user not found");
         }
 
         return getSingleValuedAttr(user, INUM_ATTR);
@@ -186,7 +201,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String userPassword = getSingleValuedAttr(user, PASSWORD);
-            String lang = getSingleValuedAttr(user, LANGUAGE);
+            String lang = getSingleValuedAttr(user, LANG);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -204,7 +219,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(PASSWORD, userPassword);
-            userMap.put(LANGUAGE, lang);
+            userMap.put(LANG, lang);
 
             return userMap;
         }
@@ -229,88 +244,81 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public boolean sendUsernameUpdateEmail(String to, String newUsername, String language) {
+    public boolean sendUsernameUpdateEmail(String to, String newUsername, String lang) {
         try {
-        // Fetch SMTP configuration
-        ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
-        SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
+            // Fetch SMTP configuration
+            ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
+            SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
 
-        if (smtpConfig == null) {
-            LogUtils.log("SMTP configuration is missing.");
+            if (smtpConfig == null) {
+                LogUtils.log("SMTP configuration is missing.");
+                return false;
+            }
+
+            // Use preferred lang from Agama directly
+            String preferredLang = (lang != null && !lang.isEmpty())
+                    ? lang.toLowerCase()
+                    : "en"; // fallback to English
+
+            // ✅ Inline translations
+            Map<String, Map<String, String>> translations = new HashMap<>();
+            translations.put("en", Map.of(
+                    "subject", "Your username has been updated successfully",
+                    "body", "Your username has been updated to",
+                    "footer", "Thanks for keeping your account secure."));
+            translations.put("es", Map.of(
+                    "subject", "Su nombre de usuario se ha actualizado correctamente",
+                    "body", "Su nombre de usuario se ha actualizado a",
+                    "footer", "Gracias por mantener su cuenta segura."));
+            translations.put("fr", Map.of(
+                    "subject", "Votre nom d'utilisateur a été mis à jour avec succès",
+                    "body", "Votre nom d'utilisateur a été mis à jour en",
+                    "footer", "Merci de garder votre compte sécurisé."));
+            translations.put("pt", Map.of(
+                    "subject", "Seu nome de usuário foi atualizado com sucesso",
+                    "body", "Seu nome de usuário foi atualizado para",
+                    "footer", "Obrigado por manter sua conta segura."));
+            translations.put("ar", Map.of(
+                    "subject", "تم تحديث اسم المستخدم الخاص بك بنجاح",
+                    "body", "تم تحديث اسم المستخدم الخاص بك إلى",
+                    "footer", "شكرًا للحفاظ على أمان حسابك."));
+            translations.put("id", Map.of(
+                    "subject", "Nama pengguna Anda berhasil diperbarui",
+                    "body", "Nama pengguna Anda telah diperbarui menjadi",
+                    "footer", "Terima kasih telah menjaga keamanan akun Anda."));
+
+            // ✅ Pick the right lang (fallback to English if missing)
+            Map<String, String> bundle = translations.getOrDefault(preferredLang, translations.get("en"));
+
+            // Build context data
+            ContextData context = new ContextData();
+            context.setDevice("Unknown");
+            context.setLocation("Unknown");
+            context.setTimeZone("UTC");
+
+            // Prepare localized email content
+            String htmlBody = SendEmailTemplate.get(newUsername, context, bundle);
+            String subject = bundle.get("subject");
+            String textBody = bundle.get("body") + ": " + newUsername;
+
+            // Send signed email
+            MailService mailService = CdiUtil.bean(MailService.class);
+            boolean sent = mailService.sendMailSigned(
+                    smtpConfig.getFromEmailAddress(),
+                    smtpConfig.getFromName(),
+                    to,
+                    null,
+                    subject,
+                    textBody,
+                    htmlBody);
+
+            LogUtils.log("Localized username update email sent successfully to %", to);
+            return sent;
+        } catch (Exception e) {
+            LogUtils.log("Failed to send username update email: %", e.getMessage());
             return false;
         }
-
-        // Use preferred language from Agama directly
-        String lang = (language != null && !language.isEmpty())
-                ? language.toLowerCase()
-                : "en"; // fallback to English
-
-        // ✅ Inline translations
-        Map<String, Map<String, String>> translations = new HashMap<>();
-        translations.put("en", Map.of(
-            "subject", "Your username has been updated successfully",
-            "body", "Your username has been updated to",
-            "footer", "Thanks for keeping your account secure."
-        ));
-        translations.put("es", Map.of(
-            "subject", "Su nombre de usuario se ha actualizado correctamente",
-            "body", "Su nombre de usuario se ha actualizado a",
-            "footer", "Gracias por mantener su cuenta segura."
-        ));
-        translations.put("fr", Map.of(
-            "subject", "Votre nom d'utilisateur a été mis à jour avec succès",
-            "body", "Votre nom d'utilisateur a été mis à jour en",
-            "footer", "Merci de garder votre compte sécurisé."
-        ));
-        translations.put("pt", Map.of(
-            "subject", "Seu nome de usuário foi atualizado com sucesso",
-            "body", "Seu nome de usuário foi atualizado para",
-            "footer", "Obrigado por manter sua conta segura."
-        ));
-        translations.put("ar", Map.of(
-            "subject", "تم تحديث اسم المستخدم الخاص بك بنجاح",
-            "body", "تم تحديث اسم المستخدم الخاص بك إلى",
-            "footer", "شكرًا للحفاظ على أمان حسابك."
-        ));
-        translations.put("id", Map.of(
-            "subject", "Nama pengguna Anda berhasil diperbarui",
-            "body", "Nama pengguna Anda telah diperbarui menjadi",
-            "footer", "Terima kasih telah menjaga keamanan akun Anda."
-        ));
-
-        // ✅ Pick the right language (fallback to English if missing)
-        Map<String, String> bundle = translations.getOrDefault(lang, translations.get("en"));
-
-        // Build context data
-        ContextData context = new ContextData();
-        context.setDevice("Unknown");
-        context.setLocation("Unknown");
-        context.setTimeZone("UTC");
-
-        // Prepare localized email content
-        String htmlBody = EmailTemplate.get(newUsername, context, bundle);
-        String subject = bundle.get("subject");
-        String textBody = bundle.get("body") + ": " + newUsername;
-
-        // Send signed email
-        MailService mailService = CdiUtil.bean(MailService.class);
-        boolean sent = mailService.sendMailSigned(
-                smtpConfig.getFromEmailAddress(),
-                smtpConfig.getFromName(),
-                to,
-                null,
-                subject,
-                textBody,
-                htmlBody
-        );
-
-        LogUtils.log("Localized username update email sent successfully to %", to);
-        return sent;
-    } catch (Exception e) {
-        LogUtils.log("Failed to send username update email: %", e.getMessage());
-        return false;
     }
-}
 
     // Helper method to fetch SMTP configuration
     private SmtpConfiguration getSmtpConfiguration() {
