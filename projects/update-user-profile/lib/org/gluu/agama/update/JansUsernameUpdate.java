@@ -33,7 +33,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
-    private static final String LANGUAGE = "language";
+    private static final String LANG = "lang";
     private static final SecureRandom RAND = new SecureRandom();
 
     private static JansUsernameUpdate INSTANCE = null;
@@ -104,7 +104,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String displayName = getSingleValuedAttr(user, DISPLAY_NAME);
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
-            String lang = getSingleValuedAttr(user, LANGUAGE);
+            String lang = getSingleValuedAttr(user, LANG);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -120,7 +120,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put("email", email);
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
-            userMap.put(LANGUAGE, lang);
+            userMap.put(LANG, lang);
 
             return userMap;
         }
@@ -157,9 +157,9 @@ public class JansUsernameUpdate extends UsernameUpdate {
             throw new EntryNotFoundException("User not found for inum: " + inum);
         }
 
-        // 🔒 Preserve current email and language
+        // 🔒 Preserve current email and lang
         String currentEmail = getSingleValuedAttr(user, MAIL);
-        String currentLanguage = getSingleValuedAttr(user, LANGUAGE);
+        String currentLanguage = getSingleValuedAttr(user, LANG);
 
         // ✅ Update UID if provided
         String newUid = profile.get(UID);
@@ -168,12 +168,12 @@ public class JansUsernameUpdate extends UsernameUpdate {
             user.setUserId(newUid);
         }
 
-        // ✅ Always preserve email and language
+        // ✅ Always preserve email and lang
         if (StringHelper.isNotEmpty(currentEmail)) {
             user.setAttribute(MAIL, currentEmail);
         }
         if (StringHelper.isNotEmpty(currentLanguage)) {
-            user.setAttribute(LANGUAGE, currentLanguage);
+            user.setAttribute(LANG, currentLanguage);
         }
 
         // ✅ Save the user
@@ -201,7 +201,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String userPassword = getSingleValuedAttr(user, PASSWORD);
-            String lang = getSingleValuedAttr(user, LANGUAGE);
+            String lang = getSingleValuedAttr(user, LANG);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -219,7 +219,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(PASSWORD, userPassword);
-            userMap.put(LANGUAGE, lang);
+            userMap.put(LANG, lang);
 
             return userMap;
         }
@@ -244,7 +244,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public boolean sendUsernameUpdateEmail(String to, String newUsername, String language) {
+    public boolean sendUsernameUpdateEmail(String to, String newUsername, String lang) {
         try {
             // Fetch SMTP configuration
             ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
@@ -255,9 +255,9 @@ public class JansUsernameUpdate extends UsernameUpdate {
                 return false;
             }
 
-            // Use preferred language from Agama directly
-            String lang = (language != null && !language.isEmpty())
-                    ? language.toLowerCase()
+            // Use preferred lang from Agama directly
+            String lang = (lang != null && !lang.isEmpty())
+                    ? lang.toLowerCase()
                     : "en"; // fallback to English
 
             // ✅ Inline translations
@@ -287,7 +287,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
                     "body", "Nama pengguna Anda telah diperbarui menjadi",
                     "footer", "Terima kasih telah menjaga keamanan akun Anda."));
 
-            // ✅ Pick the right language (fallback to English if missing)
+            // ✅ Pick the right lang (fallback to English if missing)
             Map<String, String> bundle = translations.getOrDefault(lang, translations.get("en"));
 
             // Build context data
