@@ -25,7 +25,6 @@ import io.jans.as.server.service.IntrospectionService;
 import io.jans.agama.engine.service.ActionService;
 import jakarta.servlet.http.HttpServletRequest;
 
-
 public class JansUsernameUpdate extends UsernameUpdate {
 
     private static final String MAIL = "mail";
@@ -59,16 +58,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
 
     try {
         ActionService actionService = CdiUtil.bean(ActionService.class);
-        HttpServletRequest request = actionService.getRequest();
-
-        if (request == null) {
-            LogUtils.log("ERROR: Unable to get HTTP request context");
-            result.put("valid", false);
-            result.put("error", "Unable to access request context");
-            return result;
-        }
-
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = actionService.getRequestHeader("Authorization");
 
         if (authHeader == null || authHeader.isEmpty()) {
             LogUtils.log("ERROR: No Authorization header provided");
@@ -96,54 +86,36 @@ public class JansUsernameUpdate extends UsernameUpdate {
         IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
         IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
 
-        if (introspectionResponse == null) {
-            LogUtils.log("ERROR: Token introspection failed - null response");
-            result.put("valid", false);
-            result.put("error", "Token validation failed");
-            return result;
-        }
-
-        if (!introspectionResponse.isActive()) {
-            LogUtils.log("ERROR: Token is not active/expired");
+        if (introspectionResponse == null || !introspectionResponse.isActive()) {
+            LogUtils.log("ERROR: Token is not active or introspection failed");
             result.put("valid", false);
             result.put("error", "Token is invalid or expired");
             return result;
         }
 
         String scopes = introspectionResponse.getScope();
-        if (scopes == null || scopes.isEmpty()) {
-            LogUtils.log("WARNING: Token has no scopes");
-        } else {
-            boolean hasRequiredScope = false;
-            def requiredScopes = ["profile", "user_update", "openid"]
+        boolean hasRequiredScope = scopes != null && (
+            scopes.contains("profile") ||
+            scopes.contains("user_update") ||
+            scopes.contains("openid")
+        );
 
-            for (String requiredScope : requiredScopes) {
-                if (scopes.contains(requiredScope)) {
-                    hasRequiredScope = true;
-                    break;
-                }
-            }
-
-            if (!hasRequiredScope) {
-                LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
-                result.put("valid", false);
-                result.put("error", "Token does not have required scope (profile, user_update, or openid)");
-                return result;
-            }
+        if (!hasRequiredScope) {
+            LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
+            result.put("valid", false);
+            result.put("error", "Token does not have required scope (profile, user_update, or openid)");
+            return result;
         }
 
-        String clientId = introspectionResponse.getClientId();
-        String username = introspectionResponse.getUsername();
-
-        LogUtils.log("Bearer token validated successfully. Client: " + clientId + ", User: " + username);
-
         result.put("valid", true);
-        result.put("clientId", clientId);
-        result.put("username", username);
+        result.put("clientId", introspectionResponse.getClientId());
+        result.put("username", introspectionResponse.getUsername());
         result.put("scopes", scopes);
 
+        LogUtils.log("Bearer token validated successfully. Client: " + introspectionResponse.getClientId());
+
     } catch (Exception e) {
-        LogUtils.log("ERROR: Bearer token validation failed with exception: " + e.getMessage());
+        LogUtils.log("ERROR: Bearer token validation failed: " + e.getMessage());
         result.put("valid", false);
         result.put("error", "Token validation error: " + e.getMessage());
     }
