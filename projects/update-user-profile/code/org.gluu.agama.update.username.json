@@ -1188,7 +1188,7 @@
 					"assignments": [
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "data.access_token",
+							"assignmentExpression": "access_token",
 							"assignedVariableName": "accessToken"
 						}
 					],
@@ -1279,7 +1279,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1944,8 +1944,8 @@
 		}
 	],
 	"viewport": {
-		"x": 507.7004780729922,
-		"y": 124.03018220643241,
-		"zoom": 0.6634225702985808
+		"x": 927.7111077640586,
+		"y": 1.4758653248703695,
+		"zoom": 1.1518876423493574
 	}
 }
