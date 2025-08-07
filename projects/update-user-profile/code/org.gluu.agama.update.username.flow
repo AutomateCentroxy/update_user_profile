@@ -3,8 +3,8 @@ Flow org.gluu.agama.update.username
      Timeout 50000 seconds
 // accessToken = data.access_token  // assuming it's passed in input JSON
 accessToken = data.access_token
+Log "@info Access Token received" accessToken
 authCheck = Call org.gluu.agama.update.JansUsernameUpdate#validateBearerToken accessToken
-Log "@info auth token will check  called "
 When authCheck.valid is false
      authErrorResponse = { success:false, error: authCheck.error }
      Finish authErrorResponse
@@ -58,8 +58,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_dlvku = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_dlvku
+                         it_svhot = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_svhot
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -67,5 +67,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_aqdov = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_aqdov
+it_rcxrh = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_rcxrh
