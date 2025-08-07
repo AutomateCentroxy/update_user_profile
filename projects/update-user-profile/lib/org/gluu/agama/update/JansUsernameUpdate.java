@@ -115,7 +115,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             LogUtils.log("WARNING: Token has no scopes");
         } else {
             boolean hasRequiredScope = false;
-            String[] requiredScopes = {"profile", "user_update", "openid"};
+            String[] requiredScopes = {"profile", "user_update"};
 
             for (String requiredScope : requiredScopes) {
                 if (scopes.contains(requiredScope)) {
