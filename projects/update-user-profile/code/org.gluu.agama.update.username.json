@@ -1176,7 +1176,14 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "authCheck.valid",
+							"operator": "is",
+							"dataValue": "false",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1191,6 +1198,42 @@
 				"height": 58
 			},
 			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "finishNode-b9ee47a3-424f-4a54-a3cd-e99da308c3fc",
+			"type": "finishNode",
+			"position": {
+				"x": 332.01612818726585,
+				"y": 371.27464685111886
+			},
+			"data": {
+				"id": "finishNode-b9ee47a3-424f-4a54-a3cd-e99da308c3fc",
+				"type": "finishNode",
+				"position": {
+					"x": 368.01612818726585,
+					"y": 353.27464685111886
+				},
+				"previousNodeId": "whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3",
+				"branching": "success",
+				"agamaData": {
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "",
+					"flowfilename": "",
+					"returnVariable": "{ success: false, error: authCheck.error }",
+					"finishMode": "withFailure",
+					"nodeIcon": "material-symbols:line-end-square-rounded"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true,
 			"dragging": false
 		}
 	],
@@ -1763,11 +1806,30 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3source_whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3_continue-assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276target_assignmentNode-146a0b1d-b88a-44f3-901b-d1e5ed06c276"
+		},
+		{
+			"id": "whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3-finishNode-b9ee47a3-424f-4a54-a3cd-e99da308c3fc",
+			"type": "default",
+			"source": "whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3",
+			"target": "finishNode-b9ee47a3-424f-4a54-a3cd-e99da308c3fc",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "Condition met",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3_success"
 		}
 	],
 	"viewport": {
-		"x": 847.4357925507276,
-		"y": 111.94022541192192,
-		"zoom": 1
+		"x": 478.66686685479374,
+		"y": 180.1662832902279,
+		"zoom": 0.6381643844144765
 	}
 }
