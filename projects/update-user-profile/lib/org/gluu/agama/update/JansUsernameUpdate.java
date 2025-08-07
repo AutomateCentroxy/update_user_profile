@@ -20,6 +20,11 @@ import org.gluu.agama.smtp.SendEmailTemplate;
 import org.gluu.agama.smtp.jans.model.ContextData;
 import io.jans.model.SmtpConfiguration;
 import io.jans.service.MailService;
+import io.jans.as.model.common.IntrospectionResponse;
+import io.jans.as.server.service.IntrospectionService;
+import io.jans.agama.engine.service.ActionService;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Context;
 
 public class JansUsernameUpdate extends UsernameUpdate {
 
@@ -46,6 +51,104 @@ public class JansUsernameUpdate extends UsernameUpdate {
             INSTANCE = new JansUsernameUpdate();
 
         return INSTANCE;
+    }
+
+
+    public static Map<String, Object> validateBearerToken() {
+    Map<String, Object> result = new HashMap<>();
+
+    try {
+        ActionService actionService = CdiUtil.bean(ActionService.class);
+        HttpServletRequest request = actionService.getRequest();
+
+        if (request == null) {
+            LogUtils.log("ERROR: Unable to get HTTP request context");
+            result.put("valid", false);
+            result.put("error", "Unable to access request context");
+            return result;
+        }
+
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || authHeader.isEmpty()) {
+            LogUtils.log("ERROR: No Authorization header provided");
+            result.put("valid", false);
+            result.put("error", "Missing Authorization header. Bearer token required.");
+            return result;
+        }
+
+        if (!authHeader.startsWith("Bearer ")) {
+            LogUtils.log("ERROR: Authorization header does not contain Bearer token");
+            result.put("valid", false);
+            result.put("error", "Invalid Authorization header format. Expected: Bearer <token>");
+            return result;
+        }
+
+        String token = authHeader.substring(7).trim();
+
+        if (token.isEmpty()) {
+            LogUtils.log("ERROR: Bearer token is empty");
+            result.put("valid", false);
+            result.put("error", "Bearer token is empty");
+            return result;
+        }
+
+        IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
+        IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
+
+        if (introspectionResponse == null) {
+            LogUtils.log("ERROR: Token introspection failed - null response");
+            result.put("valid", false);
+            result.put("error", "Token validation failed");
+            return result;
+        }
+
+        if (!introspectionResponse.isActive()) {
+            LogUtils.log("ERROR: Token is not active/expired");
+            result.put("valid", false);
+            result.put("error", "Token is invalid or expired");
+            return result;
+        }
+
+        String scopes = introspectionResponse.getScope();
+        if (scopes == null || scopes.isEmpty()) {
+            LogUtils.log("WARNING: Token has no scopes");
+        } else {
+            boolean hasRequiredScope = false;
+            String[] requiredScopes = {"profile", "user_update", "openid"};
+
+            for (String requiredScope : requiredScopes) {
+                if (scopes.contains(requiredScope)) {
+                    hasRequiredScope = true;
+                    break;
+                }
+            }
+
+            if (!hasRequiredScope) {
+                LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
+                result.put("valid", false);
+                result.put("error", "Token does not have required scope (profile, user_update, or openid)");
+                return result;
+            }
+        }
+
+        String clientId = introspectionResponse.getClientId();
+        String username = introspectionResponse.getUsername();
+
+        LogUtils.log("Bearer token validated successfully. Client: " + clientId + ", User: " + username);
+
+        result.put("valid", true);
+        result.put("clientId", clientId);
+        result.put("username", username);
+        result.put("scopes", scopes);
+
+    } catch (Exception e) {
+        LogUtils.log("ERROR: Bearer token validation failed with exception: " + e.getMessage());
+        result.put("valid", false);
+        result.put("error", "Token validation error: " + e.getMessage());
+    }
+
+    return result;
     }
 
     public boolean passwordPolicyMatch(String userPassword) {
