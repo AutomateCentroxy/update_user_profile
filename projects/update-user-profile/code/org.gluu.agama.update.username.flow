@@ -3,7 +3,9 @@ Flow org.gluu.agama.update.username
      Timeout 50000 seconds
 authCheck = Call org.gluu.agama.update.JansUsernameUpdate#validateBearerToken 
 Log "@info auth token will check  called "
-When 
+When authCheck.valid is false
+     it_ubalu = {success:false, error: "__________"}
+     Finish it_ubalu
 //  Create  variable for UI feedback
 uiFeedback = {}
 uiFeedback.errorMessage = ""
@@ -54,8 +56,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_iujgb = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_iujgb
+                         it_ehdau = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_ehdau
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -63,5 +65,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_umbgv = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_umbgv
+it_vtywi = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_vtywi
