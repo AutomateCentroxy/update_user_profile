@@ -23,8 +23,6 @@ import io.jans.service.MailService;
 import io.jans.as.model.common.IntrospectionResponse;
 import io.jans.as.server.service.IntrospectionService;
 import io.jans.agama.engine.service.ActionService;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
 
 public class JansUsernameUpdate extends UsernameUpdate {
 
