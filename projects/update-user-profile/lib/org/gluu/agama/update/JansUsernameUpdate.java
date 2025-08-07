@@ -58,7 +58,8 @@ public class JansUsernameUpdate extends UsernameUpdate {
 
     try {
         ActionService actionService = CdiUtil.bean(ActionService.class);
-        String authHeader = actionService.getRequestHeader("Authorization");
+        Map<String, String> headers = actionService.getRequestHeaders();
+        String authHeader = headers.get("Authorization");
 
         if (authHeader == null || authHeader.isEmpty()) {
             LogUtils.log("ERROR: No Authorization header provided");
