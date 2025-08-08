@@ -35,7 +35,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1130,8 +1130,8 @@
 			"id": "whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3",
 			"type": "whenNode",
 			"position": {
-				"x": 501.7337451645792,
-				"y": 147.2453072128853
+				"x": 300.7337451645792,
+				"y": 153.2453072128853
 			},
 			"data": {
 				"id": "whenNode-4efd86f1-caa1-44fa-a27c-97dfeca441f3",
@@ -1166,7 +1166,7 @@
 				"width": 110,
 				"height": 60
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1886,8 +1886,8 @@
 		}
 	],
 	"viewport": {
-		"x": 489,
-		"y": -69,
+		"x": 0,
+		"y": 0,
 		"zoom": 1
 	}
 }
