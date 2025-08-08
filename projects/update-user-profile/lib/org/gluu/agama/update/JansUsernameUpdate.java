@@ -59,7 +59,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return INSTANCE;
     }
 
-    public static Map<String, Object> validateBearerTokenFromHeader(String access_token) {
+    public static Map<String, Object> validateBearerToken(String access_token) {
     Map<String, Object> result = new HashMap<>();
     
     try {
