@@ -56,23 +56,23 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return INSTANCE;
     }
 
-    public static Map<String, Object> validateBearerToken(String token) {
+    public static Map<String, Object> validateBearerToken(String access_token) {
     Map<String, Object> result = new HashMap<>();
 
     try {
         // ✅ Handle null or empty token
-        if (token == null || token.trim().isEmpty()) {
+        if (access_token == null || access_token.trim().isEmpty()) {
             result.put("valid", false);
             result.put("error", "Access token is missing or empty");
             return result;
         }
 
         // ✅ Build Bearer header
-        String authHeader = "Bearer " + token.trim();
+        String authHeader = "Bearer " + access_token.trim();
 
         // 🔹 Introspect the token
         IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
-        IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
+        IntrospectionResponse introspectionResponse = introspectionService.introspect(access_token);
 
         if (introspectionResponse == null || !introspectionResponse.isActive()) {
             result.put("valid", false);
