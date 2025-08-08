@@ -64,17 +64,9 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        WebContext webContext = WebUtils.getCurrentWebContext();
-        if (webContext == null) {
-            LogUtils.log("ERROR: Unable to get WebContext");
-            result.put("valid", false);
-            result.put("error", "Unable to access WebContext");
-            return result;
-        }
-
-        HttpServletRequest request = webContext.getHttpServletRequest();
+        HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
         if (request == null) {
-            LogUtils.log("ERROR: No HttpServletRequest available");
+            LogUtils.log("ERROR: No HttpServletRequest available via CDI");
             result.put("valid", false);
             result.put("error", "No HTTP request available");
             return result;
