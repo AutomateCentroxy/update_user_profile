@@ -63,7 +63,8 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+        // HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+        HttpServletRequest request = ActionService.getRequest();
         if (request == null) {
             LogUtils.log("ERROR: No HttpServletRequest available via CDI");
             result.put("valid", false);
@@ -108,7 +109,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
         String scopes = introspectionResponse.getScope();
         boolean hasRequiredScope = scopes != null && (
             scopes.contains("profile") ||
-            scopes.contains("user_update") ||
+            scopes.contains("email") ||
             scopes.contains("openid")
         );
         
