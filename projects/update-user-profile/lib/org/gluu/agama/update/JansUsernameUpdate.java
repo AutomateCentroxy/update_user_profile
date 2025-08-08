@@ -60,27 +60,39 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        // ✅ Handle null or empty token
+        // ✅ Use the token passed as parameter
         if (access_token == null || access_token.trim().isEmpty()) {
+            LogUtils.log("ERROR: Access token is missing or empty");
             result.put("valid", false);
             result.put("error", "Access token is missing or empty");
             return result;
         }
 
-        // ✅ Build Bearer header
-        String authHeader = "Bearer " + access_token.trim();
+        String token = access_token.trim();
+        LogUtils.log("Validating access token: " + token.substring(0, Math.min(20, token.length())) + "...");
 
         // 🔹 Introspect the token
         IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
-        IntrospectionResponse introspectionResponse = introspectionService.introspect(access_token);
+        IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
 
-        if (introspectionResponse == null || !introspectionResponse.isActive()) {
+        if (introspectionResponse == null) {
+            LogUtils.log("ERROR: Token introspection returned null");
+            result.put("valid", false);
+            result.put("error", "Token validation failed - null response");
+            return result;
+        }
+
+        if (!introspectionResponse.isActive()) {
+            LogUtils.log("ERROR: Token is not active");
             result.put("valid", false);
             result.put("error", "Token is invalid or expired");
             return result;
         }
 
+        // Check scopes
         String scopes = introspectionResponse.getScope();
+        LogUtils.log("Token scopes: " + scopes);
+        
         boolean hasRequiredScope = scopes != null && (
             scopes.contains("profile") ||
             scopes.contains("user_update") ||
@@ -88,17 +100,26 @@ public class JansUsernameUpdate extends UsernameUpdate {
         );
 
         if (!hasRequiredScope) {
+            LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
             result.put("valid", false);
-            result.put("error", "Token does not have required scope");
+            result.put("error", "Token does not have required scope (profile, user_update, or openid)");
             return result;
         }
 
+        // Token is valid
+        String clientId = introspectionResponse.getClientId();
+        String username = introspectionResponse.getUsername();
+        
+        LogUtils.log("Token validated successfully. Client: " + clientId + ", User: " + username);
+        
         result.put("valid", true);
-        result.put("clientId", introspectionResponse.getClientId());
-        result.put("username", introspectionResponse.getUsername());
+        result.put("clientId", clientId);
+        result.put("username", username);
         result.put("scopes", scopes);
 
     } catch (Exception e) {
+        LogUtils.log("ERROR: Token validation failed with exception: " + e.getMessage());
+        e.printStackTrace();
         result.put("valid", false);
         result.put("error", "Token validation error: " + e.getMessage());
     }
