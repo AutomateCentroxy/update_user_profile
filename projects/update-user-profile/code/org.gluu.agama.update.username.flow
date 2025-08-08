@@ -2,6 +2,8 @@ Flow org.gluu.agama.update.username
      Basepath ""
      Timeout 50000 seconds
      Inputs access_token
+// Pull from session since it's already stored
+access_token = session.access_token
 // "Access Token call start"
 Log "@info Access Token call start" access_token
 authCheck = Call org.gluu.agama.update.JansUsernameUpdate#validateBearerToken access_token
@@ -58,8 +60,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_dlefu = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_dlefu
+                         it_muxil = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_muxil
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -67,5 +69,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_tzkxj = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_tzkxj
+it_hhvcn = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_hhvcn
