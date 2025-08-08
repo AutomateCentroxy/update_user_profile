@@ -30,6 +30,7 @@ import io.jans.as.model.jwt.JwtHeader;
 import io.jans.agama.engine.service.WebContext;
 import jakarta.faces.context.ExternalContext;
 import io.jans.as.server.util.ServerUtil;
+import io.jans.agama.engine.service.WebUtils;
 
 
 public class JansUsernameUpdate extends UsernameUpdate {
@@ -63,12 +64,19 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        HttpServletRequest request = ServerUtil.getCurrentHttpRequest();
-
-        if (request == null) {
-            LogUtils.log("ERROR: Unable to get HTTP request");
+        WebContext webContext = WebUtils.getCurrentWebContext();
+        if (webContext == null) {
+            LogUtils.log("ERROR: Unable to get WebContext");
             result.put("valid", false);
-            result.put("error", "Unable to access HTTP request");
+            result.put("error", "Unable to access WebContext");
+            return result;
+        }
+
+        HttpServletRequest request = webContext.getHttpServletRequest();
+        if (request == null) {
+            LogUtils.log("ERROR: No HttpServletRequest available");
+            result.put("valid", false);
+            result.put("error", "No HTTP request available");
             return result;
         }
         
@@ -76,18 +84,9 @@ public class JansUsernameUpdate extends UsernameUpdate {
         String authHeader = request.getHeader("Authorization");
         LogUtils.log("Authorization header: " + (authHeader != null ? "Present" : "Missing"));
         
-        if (authHeader == null || authHeader.isEmpty()) {
-            LogUtils.log("ERROR: No Authorization header provided");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             result.put("valid", false);
-            result.put("error", "Missing Authorization header. Bearer token required.");
-            return result;
-        }
-        
-        // Check if it's a Bearer token
-        if (!authHeader.startsWith("Bearer ")) {
-            LogUtils.log("ERROR: Authorization header does not contain Bearer token");
-            result.put("valid", false);
-            result.put("error", "Invalid Authorization header format. Expected: Bearer <token>");
+            result.put("error", "Missing or invalid Authorization header");
             return result;
         }
         
