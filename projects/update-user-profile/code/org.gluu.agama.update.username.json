@@ -35,7 +35,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1123,7 +1123,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1247,8 +1247,8 @@
 			"id": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
 			"type": "logNode",
 			"position": {
-				"x": -446.96902131228944,
-				"y": 91.32972714116622
+				"x": -384.96902131228944,
+				"y": 92.32972714116622
 			},
 			"data": {
 				"id": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
@@ -1259,7 +1259,7 @@
 				},
 				"previousNodeId": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e",
 				"agamaData": {
-					"logMessage": "\"Access Token call start\"",
+					"logMessage": "\"Access Token call start\" access_token",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -1274,7 +1274,8 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		}
 	],
 	"edges": [
@@ -1885,8 +1886,8 @@
 		}
 	],
 	"viewport": {
-		"x": 837.3027886460734,
-		"y": -77.91323744274126,
-		"zoom": 1.3268451405971615
+		"x": 813,
+		"y": 19,
+		"zoom": 1
 	}
 }
