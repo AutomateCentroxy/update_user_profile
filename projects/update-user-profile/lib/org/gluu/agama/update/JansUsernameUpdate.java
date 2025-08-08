@@ -29,6 +29,7 @@ import io.jans.as.model.jwt.JwtClaims;
 import io.jans.as.model.jwt.JwtHeader;
 import io.jans.agama.engine.service.WebContext;
 import jakarta.faces.context.ExternalContext;
+import io.jans.as.server.util.ServerUtil;
 
 
 public class JansUsernameUpdate extends UsernameUpdate {
@@ -62,8 +63,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        ExternalContext extContext = CdiUtil.bean(ExternalContext.class);
-        HttpServletRequest request = (HttpServletRequest) extContext.getRequest();
+        HttpServletRequest request = ServerUtil.getCurrentHttpRequest();
 
         if (request == null) {
             LogUtils.log("ERROR: Unable to get HTTP request");
