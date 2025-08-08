@@ -27,8 +27,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import io.jans.as.model.jwt.Jwt;
 import io.jans.as.model.jwt.JwtClaims;
 import io.jans.as.model.jwt.JwtHeader;
-import io.jans.as.model.jwt.JwtVerificationException;
-import io.jans.as.server.service.TokenService;
 import io.jans.agama.engine.service.WebContext;
 
 public class JansUsernameUpdate extends UsernameUpdate {
