@@ -22,7 +22,7 @@
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
 					"timeout": "50000",
-					"inputs": "",
+					"inputs": "access_token",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.username",
 					"displayName": "Username Update Flow",
@@ -1106,7 +1106,9 @@
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
-					"arguments": [],
+					"arguments": [
+						"access_token"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1257,7 +1259,7 @@
 				},
 				"previousNodeId": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e",
 				"agamaData": {
-					"logMessage": "\"Access Token call start\"",
+					"logMessage": "\"Access Token call start\" access_token",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -1883,8 +1885,8 @@
 		}
 	],
 	"viewport": {
-		"x": 924.4113930764437,
-		"y": 172.9209613078452,
-		"zoom": 0.6452812452258893
+		"x": 1072.7531637701913,
+		"y": 121.25341778645776,
+		"zoom": 1.3085780714550095
 	}
 }
