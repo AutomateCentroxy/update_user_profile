@@ -28,6 +28,7 @@ import io.jans.as.model.jwt.Jwt;
 import io.jans.as.model.jwt.JwtClaims;
 import io.jans.as.model.jwt.JwtHeader;
 import io.jans.agama.engine.service.WebContext;
+import jakarta.faces.context.ExternalContext;
 
 
 public class JansUsernameUpdate extends UsernameUpdate {
@@ -61,21 +62,11 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        // Get the WebContext from Agama
-        WebContext webContext = CdiUtil.bean(WebContext.class);
-        
-        if (webContext == null) {
-            LogUtils.log("ERROR: Unable to get WebContext");
-            result.put("valid", false);
-            result.put("error", "Unable to access web context");
-            return result;
-        }
-        
-        // Get the HTTP request
-        HttpServletRequest request = webContext.getHttpRequest();
-        
+        ExternalContext extContext = CdiUtil.bean(ExternalContext.class);
+        HttpServletRequest request = (HttpServletRequest) extContext.getRequest();
+
         if (request == null) {
-            LogUtils.log("ERROR: Unable to get HTTP request from WebContext");
+            LogUtils.log("ERROR: Unable to get HTTP request");
             result.put("valid", false);
             result.put("error", "Unable to access HTTP request");
             return result;
