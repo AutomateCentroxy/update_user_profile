@@ -1102,7 +1102,7 @@
 				"previousNodeId": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
 				"agamaData": {
 					"javaClassName": "org.gluu.agama.update.JansUsernameUpdate",
-					"javaMethodName": "validateBearerToken",
+					"javaMethodName": "validateBearerTokenFromHeader",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
@@ -1883,8 +1883,8 @@
 		}
 	],
 	"viewport": {
-		"x": 692,
-		"y": 83,
-		"zoom": 1
+		"x": 924.4113930764437,
+		"y": 172.9209613078452,
+		"zoom": 0.6452812452258893
 	}
 }
