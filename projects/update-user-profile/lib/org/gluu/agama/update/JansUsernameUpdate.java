@@ -29,6 +29,7 @@ import io.jans.as.model.jwt.JwtClaims;
 import io.jans.as.model.jwt.JwtHeader;
 import io.jans.agama.engine.service.WebContext;
 
+
 public class JansUsernameUpdate extends UsernameUpdate {
 
     private static final String MAIL = "mail";
@@ -56,74 +57,100 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return INSTANCE;
     }
 
-    public static Map<String, Object> validateBearerToken(String access_token) {
+    public static Map<String, Object> validateBearerTokenFromHeader() {
     Map<String, Object> result = new HashMap<>();
 
     try {
-        // ✅ Use the token passed as parameter
-        if (access_token == null || access_token.trim().isEmpty()) {
-            LogUtils.log("ERROR: Access token is missing or empty");
+        // Get the WebContext from Agama
+        WebContext webContext = CdiUtil.bean(WebContext.class);
+        
+        if (webContext == null) {
+            LogUtils.log("ERROR: Unable to get WebContext");
             result.put("valid", false);
-            result.put("error", "Access token is missing or empty");
+            result.put("error", "Unable to access web context");
             return result;
         }
-
-        String token = access_token.trim();
-        LogUtils.log("Validating access token: " + token.substring(0, Math.min(20, token.length())) + "...");
-
-        // 🔹 Introspect the token
+        
+        // Get the HTTP request
+        HttpServletRequest request = webContext.getHttpRequest();
+        
+        if (request == null) {
+            LogUtils.log("ERROR: Unable to get HTTP request from WebContext");
+            result.put("valid", false);
+            result.put("error", "Unable to access HTTP request");
+            return result;
+        }
+        
+        // Check for Authorization header
+        String authHeader = request.getHeader("Authorization");
+        LogUtils.log("Authorization header: " + (authHeader != null ? "Present" : "Missing"));
+        
+        if (authHeader == null || authHeader.isEmpty()) {
+            LogUtils.log("ERROR: No Authorization header provided");
+            result.put("valid", false);
+            result.put("error", "Missing Authorization header. Bearer token required.");
+            return result;
+        }
+        
+        // Check if it's a Bearer token
+        if (!authHeader.startsWith("Bearer ")) {
+            LogUtils.log("ERROR: Authorization header does not contain Bearer token");
+            result.put("valid", false);
+            result.put("error", "Invalid Authorization header format. Expected: Bearer <token>");
+            return result;
+        }
+        
+        // Extract the token
+        String token = authHeader.substring(7).trim();
+        
+        if (token.isEmpty()) {
+            LogUtils.log("ERROR: Bearer token is empty");
+            result.put("valid", false);
+            result.put("error", "Bearer token is empty");
+            return result;
+        }
+        
+        LogUtils.log("Extracted token: " + token.substring(0, Math.min(20, token.length())) + "...");
+        
+        // Introspect the token
         IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
         IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
-
-        if (introspectionResponse == null) {
-            LogUtils.log("ERROR: Token introspection returned null");
-            result.put("valid", false);
-            result.put("error", "Token validation failed - null response");
-            return result;
-        }
-
-        if (!introspectionResponse.isActive()) {
-            LogUtils.log("ERROR: Token is not active");
+        
+        if (introspectionResponse == null || !introspectionResponse.isActive()) {
+            LogUtils.log("ERROR: Token is invalid or expired");
             result.put("valid", false);
             result.put("error", "Token is invalid or expired");
             return result;
         }
-
+        
         // Check scopes
         String scopes = introspectionResponse.getScope();
-        LogUtils.log("Token scopes: " + scopes);
-        
         boolean hasRequiredScope = scopes != null && (
             scopes.contains("profile") ||
             scopes.contains("user_update") ||
             scopes.contains("openid")
         );
-
+        
         if (!hasRequiredScope) {
-            LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
+            LogUtils.log("ERROR: Token missing required scope");
             result.put("valid", false);
-            result.put("error", "Token does not have required scope (profile, user_update, or openid)");
+            result.put("error", "Token does not have required scope");
             return result;
         }
-
-        // Token is valid
-        String clientId = introspectionResponse.getClientId();
-        String username = introspectionResponse.getUsername();
         
-        LogUtils.log("Token validated successfully. Client: " + clientId + ", User: " + username);
-        
+        LogUtils.log("Token validated successfully");
         result.put("valid", true);
-        result.put("clientId", clientId);
-        result.put("username", username);
+        result.put("clientId", introspectionResponse.getClientId());
+        result.put("username", introspectionResponse.getUsername());
         result.put("scopes", scopes);
-
+        
     } catch (Exception e) {
-        LogUtils.log("ERROR: Token validation failed with exception: " + e.getMessage());
+        LogUtils.log("ERROR: Exception during validation: " + e.getMessage());
         e.printStackTrace();
         result.put("valid", false);
         result.put("error", "Token validation error: " + e.getMessage());
     }
-
+    
     return result;
 }
     
@@ -406,4 +433,3 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return configurationService.getConfiguration().getSmtpConfiguration();
     }
 }
-
