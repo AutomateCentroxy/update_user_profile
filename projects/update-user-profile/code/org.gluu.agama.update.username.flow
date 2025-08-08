@@ -58,8 +58,8 @@ Repeat 6 times max
                          //  Finish the flow successfully
                          Log "@info Finish the flow successfully"
                          //  Finish the flow successfully
-                         it_sljlw = {success:true, data:  { userId: updatedUser.uid } }
-                         Finish it_sljlw
+                         it_lzfkm = {success:true, data:  { userId: updatedUser.uid } }
+                         Finish it_lzfkm
                     Otherwise
                          //  User update failed log
                          Log "@info User update failed. Error : %" E
@@ -67,5 +67,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_eweip = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_eweip
+it_ejidw = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ejidw
