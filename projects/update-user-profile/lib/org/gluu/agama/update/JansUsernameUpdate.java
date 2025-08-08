@@ -24,6 +24,12 @@ import io.jans.as.model.common.IntrospectionResponse;
 import io.jans.as.server.service.IntrospectionService;
 import io.jans.agama.engine.service.ActionService;
 import jakarta.servlet.http.HttpServletRequest;
+import io.jans.as.model.jwt.Jwt;
+import io.jans.as.model.jwt.JwtClaims;
+import io.jans.as.model.jwt.JwtHeader;
+import io.jans.as.model.jwt.JwtVerificationException;
+import io.jans.as.server.service.TokenService;
+import io.jans.agama.engine.service.WebContext;
 
 public class JansUsernameUpdate extends UsernameUpdate {
 
@@ -52,32 +58,38 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return INSTANCE;
     }
 
-
     public static Map<String, Object> validateBearerToken() {
     Map<String, Object> result = new HashMap<>();
-
+    
     try {
-        HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
-        String authHeader = request.getHeader("Authorization");
-
-        if (authHeader == null || authHeader.isEmpty()) {
-            LogUtils.log("ERROR: No Authorization header provided");
-            result.put("valid", false);
-            result.put("error", "Missing Authorization header. Bearer token required.");
-            return result;
+        String authHeader = null;
+        
+        // Try WebContext first
+        try {
+            WebContext webContext = CdiUtil.bean(WebContext.class);
+            if (webContext != null && webContext.getRequest() != null) {
+                authHeader = webContext.getRequest().getHeader("Authorization");
+            }
+        } catch (Exception e) {}
+        
+        // Fallback to HttpServletRequest
+        if (authHeader == null) {
+            try {
+                HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+                if (request != null) {
+                    authHeader = request.getHeader("Authorization");
+                }
+            } catch (Exception e) {}
         }
 
-        if (!authHeader.startsWith("Bearer ")) {
-            LogUtils.log("ERROR: Authorization header does not contain Bearer token");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             result.put("valid", false);
-            result.put("error", "Invalid Authorization header format. Expected: Bearer <token>");
+            result.put("error", "Missing or invalid Authorization header. Bearer token required.");
             return result;
         }
 
         String token = authHeader.substring(7).trim();
-
         if (token.isEmpty()) {
-            LogUtils.log("ERROR: Bearer token is empty");
             result.put("valid", false);
             result.put("error", "Bearer token is empty");
             return result;
@@ -87,7 +99,6 @@ public class JansUsernameUpdate extends UsernameUpdate {
         IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
 
         if (introspectionResponse == null || !introspectionResponse.isActive()) {
-            LogUtils.log("ERROR: Token is not active or introspection failed");
             result.put("valid", false);
             result.put("error", "Token is invalid or expired");
             return result;
@@ -101,9 +112,8 @@ public class JansUsernameUpdate extends UsernameUpdate {
         );
 
         if (!hasRequiredScope) {
-            LogUtils.log("ERROR: Token does not have required scope. Has: " + scopes);
             result.put("valid", false);
-            result.put("error", "Token does not have required scope (profile, user_update, or openid)");
+            result.put("error", "Token does not have required scope");
             return result;
         }
 
@@ -112,16 +122,14 @@ public class JansUsernameUpdate extends UsernameUpdate {
         result.put("username", introspectionResponse.getUsername());
         result.put("scopes", scopes);
 
-        LogUtils.log("Bearer token validated successfully. Client: " + introspectionResponse.getClientId());
-
     } catch (Exception e) {
-        LogUtils.log("ERROR: Bearer token validation failed: " + e.getMessage());
         result.put("valid", false);
         result.put("error", "Token validation error: " + e.getMessage());
     }
 
     return result;
-    }
+}
+    
 
     public boolean passwordPolicyMatch(String userPassword) {
         String regex = '''^(?=.*[!@#$^&*])[A-Za-z0-9!@#$^&*]{6,}$'''
