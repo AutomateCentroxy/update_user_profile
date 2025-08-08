@@ -63,69 +63,14 @@ public class JansUsernameUpdate extends UsernameUpdate {
     Map<String, Object> result = new HashMap<>();
     
     try {
-        String token = null;
-        
-        // Try to get token from HTTP header
-        try {
-            // Get ActionService instance (not static call)
-            ActionService actionService = CdiUtil.bean(ActionService.class);
-            
-            if (actionService != null) {
-                LogUtils.log("ActionService obtained successfully");
-                
-                // Get the HTTP request from the instance
-                HttpServletRequest request = actionService.getRequest();
-                
-                if (request != null) {
-                    LogUtils.log("HttpServletRequest obtained successfully");
-                    
-                    // Try to get Authorization header
-                    String authHeader = request.getHeader("Authorization");
-                    LogUtils.log("Authorization header: " + (authHeader != null ? "Present" : "Missing"));
-                    
-                    // Debug: Log all headers
-                    java.util.Enumeration<String> headerNames = request.getHeaderNames();
-                    if (headerNames != null) {
-                        LogUtils.log("Available headers:");
-                        while (headerNames.hasMoreElements()) {
-                            String headerName = headerNames.nextElement();
-                            if (headerName.equalsIgnoreCase("Authorization")) {
-                                LogUtils.log("  " + headerName + ": Bearer ***");
-                            } else {
-                                LogUtils.log("  " + headerName + ": " + request.getHeader(headerName));
-                            }
-                        }
-                    }
-                    
-                    if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                        token = authHeader.substring(7).trim();
-                        LogUtils.log("Token extracted from Authorization header");
-                    }
-                } else {
-                    LogUtils.log("HttpServletRequest is null");
-                }
-            } else {
-                LogUtils.log("ActionService is null");
-            }
-        } catch (Exception e) {
-            LogUtils.log("Error accessing HTTP request: " + e.getMessage());
-            e.printStackTrace();
-        }
-        
-        // If no token from header, try the parameter
-        if ((token == null || token.isEmpty()) && access_token != null && !access_token.trim().isEmpty()) {
-            token = access_token.trim();
-            LogUtils.log("Using token from parameter instead");
-        }
-        
-        // If still no token, return error
-        if (token == null || token.isEmpty()) {
-            LogUtils.log("ERROR: No access token found in header or parameter");
+        if (access_token == null || access_token.trim().isEmpty()) {
+            LogUtils.log("ERROR: Access token is missing");
             result.put("valid", false);
-            result.put("error", "Access token is missing. Please provide Bearer token in Authorization header");
+            result.put("error", "Access token is missing. Please provide it in the request body.");
             return result;
         }
         
+        String token = access_token.trim();
         LogUtils.log("Validating token: " + token.substring(0, Math.min(20, token.length())) + "...");
         
         // Introspect the token
@@ -183,6 +128,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
     
     return result;
 }
+
     
 
     public boolean passwordPolicyMatch(String userPassword) {
