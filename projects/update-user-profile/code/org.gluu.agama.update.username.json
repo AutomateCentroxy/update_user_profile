@@ -22,7 +22,7 @@
 					"configParams": "{}",
 					"nodeIcon": "material-symbols:line-start-square",
 					"timeout": "50000",
-					"inputs": "access_token",
+					"inputs": "",
 					"configs": "",
 					"flowname": "org.gluu.agama.update.username",
 					"displayName": "Username Update Flow",
@@ -1102,13 +1102,11 @@
 				"previousNodeId": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
 				"agamaData": {
 					"javaClassName": "org.gluu.agama.update.JansUsernameUpdate",
-					"javaMethodName": "validateBearerToken",
+					"javaMethodName": "validateBearerTokenFromHeader",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
-					"arguments": [
-						"access_token"
-					],
+					"arguments": [],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1123,7 +1121,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1247,8 +1245,8 @@
 			"id": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
 			"type": "logNode",
 			"position": {
-				"x": -428.61840953481874,
-				"y": 89.27484896197456
+				"x": -485.0609040099373,
+				"y": 95.03428717372134
 			},
 			"data": {
 				"id": "logNode-a221d787-1e6e-4c4e-951f-54a646c37c1d",
@@ -1259,7 +1257,7 @@
 				},
 				"previousNodeId": "startNode-5c75be62-f2aa-4f9c-b5cb-5d8f984c884e",
 				"agamaData": {
-					"logMessage": "\"Access Token call start\" access_token",
+					"logMessage": "\"Access Token call start\"",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -1274,7 +1272,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		}
 	],
@@ -1885,8 +1883,8 @@
 		}
 	],
 	"viewport": {
-		"x": 974.3010514963751,
-		"y": 52.23926681217347,
-		"zoom": 1.1518876423493574
+		"x": 658.5134025298472,
+		"y": 112.67730508670184,
+		"zoom": 0.8681402276010427
 	}
 }
