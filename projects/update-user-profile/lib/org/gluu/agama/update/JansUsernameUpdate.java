@@ -56,43 +56,21 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return INSTANCE;
     }
 
-    public static Map<String, Object> validateBearerToken() {
+    public static Map<String, Object> validateBearerToken(String token) {
     Map<String, Object> result = new HashMap<>();
-    
+
     try {
-        String authHeader = null;
-        
-        // Try WebContext first
-        try {
-            WebContext webContext = CdiUtil.bean(WebContext.class);
-            if (webContext != null && webContext.getRequest() != null) {
-                authHeader = webContext.getRequest().getHeader("Authorization");
-            }
-        } catch (Exception e) {}
-        
-        // Fallback to HttpServletRequest
-        if (authHeader == null) {
-            try {
-                HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
-                if (request != null) {
-                    authHeader = request.getHeader("Authorization");
-                }
-            } catch (Exception e) {}
-        }
-
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        // ✅ Handle null or empty token
+        if (token == null || token.trim().isEmpty()) {
             result.put("valid", false);
-            result.put("error", "Missing or invalid Authorization header. Bearer token required.");
+            result.put("error", "Access token is missing or empty");
             return result;
         }
 
-        String token = authHeader.substring(7).trim();
-        if (token.isEmpty()) {
-            result.put("valid", false);
-            result.put("error", "Bearer token is empty");
-            return result;
-        }
+        // ✅ Build Bearer header
+        String authHeader = "Bearer " + token.trim();
 
+        // 🔹 Introspect the token
         IntrospectionService introspectionService = CdiUtil.bean(IntrospectionService.class);
         IntrospectionResponse introspectionResponse = introspectionService.introspect(token);
 
