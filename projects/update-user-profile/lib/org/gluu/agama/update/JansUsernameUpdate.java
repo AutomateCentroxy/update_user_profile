@@ -30,7 +30,6 @@ import io.jans.as.model.jwt.JwtHeader;
 import io.jans.agama.engine.service.WebContext;
 import jakarta.faces.context.ExternalContext;
 import io.jans.as.server.util.ServerUtil;
-import io.jans.agama.engine.service.WebUtils;
 
 
 public class JansUsernameUpdate extends UsernameUpdate {
